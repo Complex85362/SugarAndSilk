@@ -1,0 +1,220 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display';
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; 
+}
+
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+
+.image {
+    flex: 1;
+    background-image: url('Web_Mobile_Homepage_Banner_1400x1400_b71a2730-7d5c-432a-9417-9007d1f5785c_1600x.jpg'); 
+    background-size: cover;
+    background-position: center;
+    border-right: 5px solid #FFFFFF; 
+}
+
+
+.form {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 40px;
+}
+
+
+.brand-name {
+    font-family: 'Playfair Display';
+    color: #f8bbd0; 
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+
+.reg {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border: 2px solid #f8bbd0;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.reg h2 {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 25px; 
+    color: #333;
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
+
+.name {
+    text-align: left;
+    margin-bottom: 15px; 
+}
+
+.name label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #444;
+}
+
+.name input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px; 
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.address {
+    text-align: left;
+    margin-bottom: 15px; 
+}
+
+.address label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #444;
+}
+
+.address input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px; 
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.email {
+    text-align: left;
+    margin-bottom: 15px; 
+}
+
+.email label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #444;
+}
+
+.email input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px; 
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.pass {
+    text-align: left;
+    margin-bottom: 15px; 
+}
+
+.pass label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #444;
+}
+
+.pass input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px; 
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.cpass {
+    text-align: left;
+    margin-bottom: 15px; 
+}
+
+.cpass label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #444;
+}
+
+.cpass input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px; 
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+
+
+.login-btn {
+    background-color: #111; 
+    color: #fff;
+    padding: 12px 50px;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 15px;
+    text-transform: capitalize;
+}
+
+.login-btn:hover {
+    background-color: #444;
+}
+
+
+.form-link {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.form-link a {
+    color: #00a0e9; 
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+}
+
+

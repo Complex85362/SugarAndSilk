@@ -1,0 +1,152 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display';
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevents unwanted scrolling */
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+
+.image{
+    flex: 1;
+   
+    background-image: url('pexels-bi-ravencrow-2154273033-33327470.jpg'); 
+    background-size: cover;
+    background-position: center;
+    border-right: 5px solid #FFFFFF;
+    }
+
+
+.form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 40px;
+}
+
+.brand-name {
+    font-family: 'Playfair Display';
+    color: #f8bbd0; 
+    font-size: 55px;
+    margin-bottom: 25px;
+}
+
+.login{
+    width: 100%;
+    max-width: 450px;
+    padding: 50px 40px;
+    border: 2px solid #f8bbd0;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.login h2 {
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.login h3 {
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: #555;
+}
+
+
+.email {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.email label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+.email input {
+    width: 100%;
+    padding: 14px 25px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    outline: none;
+    font-size: 15 px;
+    transition: all 0.3s;
+}
+.pass {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.pass label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+.pass input {
+    width: 100%;
+    padding: 14px 25px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    outline: none;
+    font-size: 15 px;
+    transition: all 0.3s;
+}
+
+
+
+
+.login-btn {
+    background-color: #111;
+    color: #fff;
+    padding: 14px 60px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: #444;
+}
+.form-link {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.form-link a {
+    color: #00a0e9; 
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+}
+
+
