@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contact.css">
+     
+    <title>Document</title>
+</head>
+<body>
+		<%@ include file="header.jsp" %>
+        <main>
+		    <!-- Hero Banner for Contact Page -->
+		    <section class="contact-hero">
+		        <div class="hero-overlay">
+		            <h1>Do you have any <br>Questions?</h1>
+		            <p>We are happy to answer any question you may have!</p>
+		        </div>
+		    </section>
+		
+		    <!-- Contact Form Section -->
+		    <section class="contact-section">
+		        <div class="contact-card">
+		            <h2>Contact Us</h2>
+		            <form action="${pageContext.request.contextPath}/submitContact" method="post">
+		                <div class="form-row">
+		                    <input type="text" name="firstName" placeholder="First Name" required>
+		                    <input type="text" name="lastName" placeholder="Last Name" required>
+		                </div>
+		                <div class="form-row">
+		                    <input type="email" name="email" placeholder="Email *" required>
+		                    <input type="tel" name="phone" placeholder="Phone Number *">
+		                </div>
+		                <div class="form-group">
+		                    <input type="text" name="subject" placeholder="Subject of your Message">
+		                </div>
+		                <div class="form-group">
+		                    <textarea name="message" placeholder="Your Message" rows="6"></textarea>
+		                </div>
+		                <div class="form-submit">
+		                    <button type="submit" class="btn-submit">Submit Your Message</button>
+		                </div>
+		            </form>
+		        </div>
+		    </section>
+		</main>
+		
+		<%@ include file="footer.jsp" %>
+</body>
+</html>
