@@ -19,7 +19,7 @@
             </div>
             <div class="nav-links">
             <a href="${pageContext.request.contextPath}/product"  style="color: var(--white)">E-Shop</a>
-            <a href="${pageContext.request.contextPath}/location"  style="color: var(--white)">Our Stores</a>
+            <a href="${pageContext.request.contextPath}/locations"  style="color: var(--white)">Our Stores</a>
             <a href="${pageContext.request.contextPath}/aboutus"  style="color: var(--white)">About Us</a>
             <a href="${pageContext.request.contextPath}/news"  style="color: var(--white)">News</a>
             </div>

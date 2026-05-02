@@ -1,0 +1,80 @@
+@charset "UTF-8";
+:root {
+    --black: #1F1A17;
+    --gold: #C2A46F;
+    --pink: #FF74A6;
+    --blue: #A2D2FF;
+    --white: #FFF8F3;
+    --softpink: #FFC8DD;
+}
+
+/* --- Global Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--white);
+    font-family: 'Playfair Display', serif;
+    color: var(--black);
+}
+.locations-page {
+    padding: 60px 0;
+}
+
+.locations-page h1 {
+    font-size: 60px;
+    color: var(--pink);
+    text-align: center;
+    margin-bottom: 80px;
+    font-weight:400;
+}
+
+/* Flexbox Layout */
+.location-card {
+    display: flex;
+    align-items: center; 
+    padding: 25px 120px;
+    gap: 80px;
+}
+
+.location-card.reverse {
+    flex-direction: row-reverse;
+}
+
+.image-content, .text-content {
+    flex: 1;
+}
+
+.image-content img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover; /* Fills the box */
+}
+
+
+.text-content h2 {
+    color: var(--pink);
+    font-size: 40px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-weight:400;
+}
+
+.text-content p {
+    font-size: 20px;
+    margin-bottom: 25px; 
+}
+
+.hours-block p {
+    margin-bottom: 15px; 
+    font-size: 14px
+}
+
+.hours-block .label {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--black);
+}
