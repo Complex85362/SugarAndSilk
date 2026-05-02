@@ -10,222 +10,162 @@
 </head>
 
 <body>
+<div class="container">
 
-<div class="app-wrapper">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">S&S <span>Sugar & Silk</span></div>
 
-    <aside class="sidebar">
-        <div class="brand">
-            <div class="brand-logo">S&S</div>
-            <h2>Sugar & Silk</h2>
+        <ul>
+            <li class="active"><a href="dashboard.jsp" style="color: inherit;">Command Center</a></li>
+            <li>Orders & Sales</li>
+
+            <li><a href="addProduct.jsp">Add Product</a></li>
+            <li><a href="Update.jsp">Update Menu</a></li>
+
+            <li>Users</li>
+            <li>Inbox</li>
+            <li>Delivery Map</li>
+        </ul>
+
+        <button class="logout">LOGOUT</button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <h2>Command Center</h2>
+
+            <form action="SearchUserServlet" method="get" class="search-container">
+                <input type="text" name="username" placeholder="Search users">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
         </div>
 
-        <nav class="side-nav">
-            <ul>
-                <li class="nav-link active"><p>Command Center</p></li>
-                <li class="nav-link"><p>Orders & Sales</p></li>
-                <li class="nav-link"><p>Update Menu</p></li>
-                <li class="nav-link"><p>Users</p></li>
-                <li class="nav-link"><p>Inbox</p></li>
-                <li class="nav-link"><p>Delivery Map</p></li>
-            </ul>
-        </nav>
-
-        <button class="logout-btn">Logout</button>
-    </aside>
-
-    <main class="content-body">
-
-        <header class="main-header">
-            <div class="header-text">
-                <h1>Command Center</h1>
-                <p>Real-time Bakery Operations</p>
+        <!-- CARDS -->
+        <div class="cards">
+            <div class="card">
+                <p>Today's Revenue</p>
+                <h3>$4,820.50</h3>
             </div>
 
-            <div class="header-tools">
-                <div class="search-container">
-                    <input type="text" placeholder="Search users, orders...">
-                </div>
-                <button class="btn-primary">+ Add New Item</button>
-            </div>
-        </header>
-
-        <section class="stats-row">
-
-            <div class="widget-card premium-white">
-                <div class="widget-info">
-                    <small>Today's Revenue</small>
-                    <h2>$4,820.50</h2>
-                </div>
+            <div class="card">
+                <p>Oven Schedule</p>
+                <h3>Batch #42</h3>
+                <span>Macarons: 12m left</span>
             </div>
 
-            <div class="widget-card premium-white">
-                <div class="widget-info">
-                    <small>Oven Schedule</small>
-                    <h2 class="oven-highlight">Batch #42</h2>
-                    <p>Macarons: 12m left</p>
-                </div>
+            <div class="card">
+                <p>Active Deliveries</p>
+                <h3>8 Drivers</h3>
+                <span>4 Out / 4 Idle</span>
+            </div>
+        </div>
+
+        <!-- USER MANAGEMENT -->
+        <div class="section">
+            <h3>User Management</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Peter Parker</td>
+                        <td>peter@man.com</td>
+                        <td>Customer</td>
+                        <td><span class="active-status">Active</span></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="toggleStatus(this)">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>James Sterling</td>
+                        <td>james@events.com</td>
+                        <td>Customer</td>
+                        <td><span class="inactive-status">Inactive</span></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" onchange="toggleStatus(this)">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Suzanne Harvey</td>
+                        <td>suzi@harv.com</td>
+                        <td>Customer</td>
+                        <td><span class="active-status">Active</span></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="toggleStatus(this)">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MJ</td>
+                        <td>mj@spy.np</td>
+                        <td>Cafe Owner</td>
+                        <td><span class="active-status">Active</span></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="toggleStatus(this)">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MENU & INVENTORY -->
+        <div class="section">
+            <h3>Menu & Inventory</h3>
+
+            <div class="item">
+                <p>Blueberry Cheesecake (Stock: 420)</p>
+                <div class="bar"><div class="fill green" style="width: 85%;"></div></div>
             </div>
 
-            <div class="widget-card premium-white">
-                <div class="widget-info">
-                    <small>Active Deliveries</small>
-                    <h2>8 Drivers</h2>
-                    <p>4 Out / 4 Idle</p>
-                </div>
+            <div class="item">
+                <p>Classic Croissant (Stock: 15)</p>
+                <div class="bar"><div class="fill orange" style="width: 20%;"></div></div>
             </div>
+        </div>
 
-        </section>
-
-        <section class="dashboard-grid">
-
-            <div class="grid-left">
-
-                <div class="glass-card">
-                    <div class="card-head">
-                        <h3>User Management</h3>
-                    </div>
-
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Peter Parker</td>
-                                <td>peter@man.com</td>
-                                <td>Customer</td>
-                                <td><span class="badge live">Active</span></td>
-                                <td>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>James Sterling</td>
-                                <td>james@events.com</td>
-                                <td>Customer</td>
-                                <td><span class="badge">Inactive</span></td>
-                                <td>
-                                    <label class="switch">
-                                        <input type="checkbox">
-                                        <span class="slider"></span>
-                                    </label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Suzzane Harvey</td>
-                                <td>suzi@harv.com</td>
-                                <td>Customer</td>
-                                <td><span class="badge live">Active</span></td>
-                                <td>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>MJ</td>
-                                <td>mj@spy.np</td>
-                                <td>Cafe Owner</td>
-                                <td><span class="badge live">Active</span></td>
-                                <td>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="glass-card">
-                    <div class="card-head">
-                        <h3>Menu & Inventory</h3>
-                    </div>
-
-                    <div class="menu-item">
-                        <strong>Blueberry Cheesecake</strong>
-                        <small>Stock: 420</small>
-                        <div class="progress-bg">
-                            <div class="progress-fill healthy" style="width:85%"></div>
-                        </div>
-                    </div>
-
-                    <div class="menu-item">
-                        <strong>Classic Croissant</strong>
-                        <small>Stock: 15</small>
-                        <div class="progress-bg">
-                            <div class="progress-fill low" style="width:15%"></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="grid-right">
-
-                <div class="glass-card">
-                    <h3>Inbox</h3>
-
-                    <div class="msg-box unread">
-                        <strong>Skylar Scheutt</strong>
-                        <small>5m ago</small>
-                        <p>Eggless 2-tier chocolate cake for Saturday?</p>
-                    </div>
-
-                    <div class="msg-box unread">
-                        <strong>Hotel Shangri-La</strong>
-                        <small>1h ago</small>
-                        <p>Logo cookies for corporate event.</p>
-                    </div>
-
-                    <div class="msg-box">
-                        <strong>Min Patricia</strong>
-                        <small>2d ago</small>
-                        <p>Order feedback: Perfect delivery!</p>
-                    </div>
-
-                    <div class="msg-box unread">
-                        <strong>Blue Angel Cafe</strong>
-                        <small>10m ago</small>
-                        <p>Need 50 cupcakes for tomorrow morning.</p>
-                    </div>
-
-                    <div class="msg-box">
-                        <strong>Himalayan Java</strong>
-                        <small>3h ago</small>
-                        <p>Can we increase weekly pastry supply?</p>
-                    </div>
-
-                    <div class="msg-box unread">
-                        <strong>Event Nepal</strong>
-                        <small>1d ago</small>
-                        <p>Looking for dessert catering for 200 guests.</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
+    </div>
 </div>
+
+<script>
+/**
+ * Updates the 'Status' badge text and color when the toggle switch is flipped
+ */
+function toggleStatus(checkbox) {
+    let row = checkbox.closest("tr");
+    let statusSpan = row.querySelector("td span");
+
+    if (checkbox.checked) {
+        statusSpan.className = "active-status";
+        statusSpan.innerText = "Active";
+    } else {
+        statusSpan.className = "inactive-status";
+        statusSpan.innerText = "Inactive";
+    }
+}
+</script>
 
 </body>
 </html>
