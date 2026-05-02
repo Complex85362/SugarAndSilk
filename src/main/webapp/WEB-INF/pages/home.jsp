@@ -18,10 +18,10 @@
                 <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/images/A_logo_for_a_company_named_Sugar___Silk__make_the_font_PlayFair_Display__also_make_sure_that_there_is_some_design_Between_the___and_Silk-removebg-preview.png" alt="Company_logo"></a>
             </div>
             <div class="nav-links">
-            <a href="#"  style="color: var(--white)">E-Shop</a>
-            <a href="#"  style="color: var(--white)">Our Stores</a>
-            <a href="#"  style="color: var(--white)">About Us</a>
-            <a href="#"  style="color: var(--white)">News</a>
+            <a href="${pageContext.request.contextPath}/product"  style="color: var(--white)">E-Shop</a>
+            <a href="${pageContext.request.contextPath}/location"  style="color: var(--white)">Our Stores</a>
+            <a href="${pageContext.request.contextPath}/aboutus"  style="color: var(--white)">About Us</a>
+            <a href="${pageContext.request.contextPath}/news"  style="color: var(--white)">News</a>
             </div>
             <div class="nav-actions">
                 <a href="#"  style="color: var(--white)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
