@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fff5f7;
+    background: radial-gradient(circle at top left, #fffcfd, #fce4ec 100%);
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 750px;
+    background: #ffffff;
+    padding: 60px;
+    border-radius: 40px;
+    box-shadow: 0 30px 60px rgba(240, 98, 146, 0.12);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bakery-name {
+    font-size: 64px;
+    color: #e17899; /* The specific pink from your image */
+    font-style: italic;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.divider {
+    width: 80px;
+    height: 1.5px;
+    background: #C5A059; /* Gold Accent */
+    margin: 0 auto 15px;
+}
+
+h2 {
+    color: #C5A059;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.search-row {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #fce4ec;
+}
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.half { flex: 0 0 48%; }
+.full { flex: 0 0 100%; }
+
+label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #C5A059;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-family: Arial, sans-serif;
+}
+
+input, select, textarea {
+    padding: 18px;
+    border: 1.5px solid #fce4ec;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #777;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #e17899;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+.btns {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 22px;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: #ed719e; /* Pink Button */
+    color: white;
+    box-shadow: 0 10px 20px rgba(237, 113, 158, 0.3);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #ed719e;
+    border: 2px solid #ed719e; /* Hollow Pink Button */
+}
+
+.btn-secondary:hover {
+    background: #fff5f7;
+}
+
+@media (max-width: 600px) {
+    .half { flex: 0 0 100%; }
+}
