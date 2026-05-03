@@ -2,9 +2,10 @@
 :root {
     --black: #1F1A17;
     --gold: #C2A46F;
-    --pink: #FFAFCC;
+    --pink: #FF74A6;
     --blue: #A2D2FF;
     --white: #FFF8F3;
+    --softpink: #FFC8DD;
 }
 
 /* --- Global Styles --- */
@@ -20,43 +21,7 @@ body{
     color: var(--black);
 }
 
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 120px;
-}
 
-.logo img{
-    max-width: 163px;
-}
-
-.nav-links{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 20px;
-    font-size: 20px;
-}
-
-.nav-links a{
-    text-decoration: none;
-    color: var(--white);
-}
-
-.nav-actions{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 20px;
-    font-size: 20px;
-    color: var(--white);
-}
-
-.nav-actions a{
-    text-decoration: none;
-    color: var(--white);
-}
 .home-page-banner{
     height: 700px;
     background:  url('../images/pexels-ignacio-rosas-348555402-14160612.jpg') center/cover no-repeat;
