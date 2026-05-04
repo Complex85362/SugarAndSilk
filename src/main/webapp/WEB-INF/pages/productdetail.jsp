@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page isELIgnored="false" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +58,28 @@
             </div>
 
         </div>
+        <section class="review-section">
+    <h2>Customer Reviews</h2>
+    <div class="review-form-container">
+        <form action="${pageContext.request.contextPath}/submitReview" method="POST" class="review-form">
+            <div class="rating-group">
+                <label for="rating">Your Rating:</label>
+                <select name="rating" id="rating" required>
+                    <option value="" disabled selected>Rating from 1 - 10</option>
+                    <c:forEach var="i" begin="1" end="10">
+                        <option value="${i}">${i}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="message-group">
+                <textarea name="comment" placeholder="Your Message" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-review-btn">Submit Review</button>
+        </form>
+    </div>
+</section>
     </main>
 	<%@ include file="footer.jsp" %>
 </body>

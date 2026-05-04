@@ -154,3 +154,66 @@ body{
     margin-top: 20px;
     color: var(--black); 
 }
+.review-section {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+}
+
+.review-section h2 {
+    color: var(--pink);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rating-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.rating-group select {
+    padding: 10px;
+    border: 1px solid var(--pink);
+    border-radius: 4px;
+    background-color: var(--white);
+    font-family: inherit;
+    color: var(--black);
+    width: 200px;
+}
+
+.message-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--blue);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.submit-review-btn {
+    width: fit-content;
+    background-color: var(--gold);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: flex-start;
+}
+
+.submit-review-btn:hover {
+    background-color: var(--pink);
+}

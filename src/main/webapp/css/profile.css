@@ -1,0 +1,146 @@
+:root {
+    --pink: #f8bbd0;
+    --black: #111111;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fffaf9;
+    font-family: 'Poppins', sans-serif;
+    color: var(--black);
+    margin: 0;
+}
+
+.profile-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0; /* Reduced vertical padding */
+}
+
+.brand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; /* Slightly smaller to save space */
+    margin-bottom: 10px;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 450px;
+    background: var(--white);
+    border: 2px solid var(--pink);
+    border-radius: 20px;
+    padding: 25px 35px; /* Reduced vertical padding */
+    position: relative;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    text-decoration: none;
+    color: var(--black);
+    font-size: 24px;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px; /* Reduced from 25px */
+}
+
+.profile-avatar {
+    font-size: 40px; /* Smaller icon */
+    margin-bottom: 5px;
+    color: #4b2c6d;
+}
+
+.change-photo-btn {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.input-group {
+    margin-bottom: 10px; /* Reduced from 15px */
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: 600;
+    font-size: 11px; /* Slightly smaller labels */
+    margin-bottom: 3px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    height: 36px; /* Slightly slimmer inputs */
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 13px;
+    outline: none;
+    background-color: #fafafa;
+    color: #666;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.save-btn {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 10px 35px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between the two buttons */
+    margin-top: 15px;
+}
+
+.save-btn, .logout-btn {
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+.save-btn {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+}
+
+.logout-btn {
+    background-color: var(--pink); 
+    color: var(--white);
+    border: none;
+}
+
+.logout-btn:hover, .save-btn:hover {
+    opacity: 0.8;
+}
