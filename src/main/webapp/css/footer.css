@@ -1,0 +1,82 @@
+.main-footer {
+    background-color: var(--white);
+    padding: 80px 120px; /* more breathing space */
+    border-top: 1.5px solid var(--pink);
+    
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* aligns all columns from top */
+    gap: 80px; /* more space between columns */
+    flex-wrap: wrap;
+    
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 180px;
+    font-family:Playfair Display;
+}
+
+.footer-col h4 {
+    font-size: 20.8px;
+    margin-bottom: 20px;
+    color: var(--black);
+    font-weight: 600;
+}
+
+.footer-col p,
+.footer-col a {
+    font-size: 15.2px;
+    color: var(--black);
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: var(--pink);
+}
+
+/* --- Social Icon Styling --- */
+.social-icons {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 columns */
+    gap: 12px 50px; /* row gap, column gap */
+    margin-top: 10px;
+     justify-content: end;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* keeps icons aligned neatly */
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+}
+
+/* For outline-based SVGs (Instagram, Facebook) */
+.social-svg {
+    stroke: var(--black);
+    transition: stroke 0.3s ease;
+}
+
+.social-icons a:hover .social-svg {
+    stroke: var(--pink);
+}
+
+/* For solid-fill SVGs (X/Twitter) */
+.social-svg-fill {
+    fill: var(--black);
+    transition: fill 0.3s ease;
+}
+
+.social-icons a:hover .social-svg-fill {
+    fill: var(--pink);
+}

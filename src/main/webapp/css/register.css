@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -6,28 +5,29 @@
     font-family: 'Playfair Display';
 }
 
+#profileImage {
+    display: none !important;
+}
+
 body, html {
     height: 100%;
     width: 100%;
-    overflow: hidden; 
+    overflow-y: auto;
 }
-
 
 .container {
     display: flex;
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
+    overflow: hidden;
 }
-
 
 .image {
     flex: 1;
-    background-image: url('Web_Mobile_Homepage_Banner_1400x1400_b71a2730-7d5c-432a-9417-9007d1f5785c_1600x.jpg'); 
     background-size: cover;
     background-position: center;
     border-right: 5px solid #FFFFFF; 
 }
-
 
 .form {
     flex: 1; 
@@ -36,22 +36,19 @@ body, html {
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    padding: 40px;
+    padding: 15px;
 }
-
 
 .brand-name {
-    font-family: 'Playfair Display';
     color: #f8bbd0; 
-    font-size: 50px;
-    margin-bottom: 15px;
+    font-size: 32px;
+    margin-bottom: 10px;
 }
-
 
 .reg {
     width: 100%;
-    max-width: 450px;
-    padding: 40px;
+    max-width: 400px;
+    padding: 20px 30px;
     border: 2px solid #f8bbd0;
     border-radius: 20px;
     text-align: center;
@@ -60,139 +57,58 @@ body, html {
 
 .reg h2 {
     font-weight: 600;
-    font-size: 25px;
-    margin-bottom: 25px; 
+    font-size: 18px;
+    margin-bottom: 15px; 
     color: #333;
     text-transform: uppercase; 
     letter-spacing: 1px;
 }
 
-
-.name {
+.name, .gender, .address, .email, .pass {
     text-align: left;
-    margin-bottom: 15px; 
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
-.name label {
-    display: block;
+.name label, .gender label, .address label, .email label, .pass label {
     font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 13px;
+    margin-bottom: 3px;
+    font-size: 12px;
     color: #444;
 }
 
-.name input {
+.name input, .address input, .email input, .pass input, .gender select {
     width: 100%;
-    padding: 12px 20px;
+    padding: 8px 18px;
+    height: 38px;
     border: 1px solid #ddd;
     border-radius: 25px; 
     outline: none;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-
-.address {
-    text-align: left;
-    margin-bottom: 15px; 
-}
-
-.address label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
     font-size: 13px;
-    color: #444;
-}
-
-.address input {
-    width: 100%;
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    border-radius: 25px; 
-    outline: none;
-    font-size: 14px;
     transition: all 0.3s;
-}
-.email {
-    text-align: left;
-    margin-bottom: 15px; 
+    background-color: #fff;
 }
 
-.email label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 13px;
-    color: #444;
+.gender select {
+    cursor: pointer;
 }
 
-.email input {
-    width: 100%;
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    border-radius: 25px; 
-    outline: none;
-    font-size: 14px;
-    transition: all 0.3s;
+input:focus, select:focus {
+    border-color: #f8bbd0;
 }
-.pass {
-    text-align: left;
-    margin-bottom: 15px; 
-}
-
-.pass label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 13px;
-    color: #444;
-}
-
-.pass input {
-    width: 100%;
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    border-radius: 25px; 
-    outline: none;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-.cpass {
-    text-align: left;
-    margin-bottom: 15px; 
-}
-
-.cpass label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 13px;
-    color: #444;
-}
-
-.cpass input {
-    width: 100%;
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    border-radius: 25px; 
-    outline: none;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-
-
 
 .login-btn {
     background-color: #111; 
     color: #fff;
-    padding: 12px 50px;
+    padding: 10px 40px;
     border: none;
     border-radius: 25px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
-    margin-top: 15px;
+    margin-top: 10px;
     text-transform: capitalize;
 }
 
@@ -200,10 +116,9 @@ body, html {
     background-color: #444;
 }
 
-
 .form-link {
-    margin-top: 15px;
-    font-size: 13px;
+    margin-top: 10px;
+    font-size: 12px;
     color: #666;
 }
 
@@ -217,4 +132,18 @@ body, html {
     text-decoration: underline;
 }
 
-
+.add-image-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}

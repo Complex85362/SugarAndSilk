@@ -1,15 +1,14 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Playfair Display';
+    font-family: 'Poppins', sans-serif; /* Fallback font */
 }
 
 body, html {
     height: 100%;
     width: 100%;
-    overflow: hidden; /* Prevents unwanted scrolling */
+    overflow: hidden; 
 }
 
 .container {
@@ -18,16 +17,13 @@ body, html {
     width: 100%;
 }
 
-
-.image{
+.image {
     flex: 1;
-   
-    background-image: url('pexels-bi-ravencrow-2154273033-33327470.jpg'); 
     background-size: cover;
     background-position: center;
     border-right: 5px solid #FFFFFF;
-    }
-
+    background-repeat: no-repeat;
+}
 
 .form {
     flex: 1;
@@ -40,13 +36,13 @@ body, html {
 }
 
 .brand-name {
-    font-family: 'Playfair Display';
+    font-family: 'Playfair Display', serif;
     color: #f8bbd0; 
     font-size: 55px;
     margin-bottom: 25px;
 }
 
-.login{
+.login {
     width: 100%;
     max-width: 450px;
     padding: 50px 40px;
@@ -57,6 +53,7 @@ body, html {
 }
 
 .login h2 {
+    font-family: 'Playfair Display', serif;
     font-weight: 600;
     font-size: 30px;
     margin-bottom: 5px;
@@ -68,13 +65,12 @@ body, html {
     color: #555;
 }
 
-
-.email {
+.email, .pass {
     text-align: left;
     margin-bottom: 25px;
 }
 
-.email label {
+.email label, .pass label {
     display: block;
     font-weight: 600;
     margin-bottom: 8px;
@@ -82,40 +78,15 @@ body, html {
     color: #333;
 }
 
-.email input {
+.email input, .pass input {
     width: 100%;
     padding: 14px 25px;
     border: 1px solid #ddd;
     border-radius: 30px;
     outline: none;
-    font-size: 15 px;
+    font-size: 15px;
     transition: all 0.3s;
 }
-.pass {
-    text-align: left;
-    margin-bottom: 25px;
-}
-
-.pass label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 13px;
-    color: #333;
-}
-
-.pass input {
-    width: 100%;
-    padding: 14px 25px;
-    border: 1px solid #ddd;
-    border-radius: 30px;
-    outline: none;
-    font-size: 15 px;
-    transition: all 0.3s;
-}
-
-
-
 
 .login-btn {
     background-color: #111;
@@ -133,6 +104,7 @@ body, html {
 .login-btn:hover {
     background-color: #444;
 }
+
 .form-link {
     margin-top: 15px;
     font-size: 13px;
@@ -148,5 +120,3 @@ body, html {
 .form-link a:hover {
     text-decoration: underline;
 }
-
-
