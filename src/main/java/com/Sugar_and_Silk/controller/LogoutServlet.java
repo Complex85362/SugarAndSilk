@@ -1,28 +1,25 @@
 package com.Sugar_and_Silk.controller;
 
-import java.io.IOException;
-import java.util.List;
-
-import com.Sugar_and_Silk.model.ProductModel;
-import com.Sugar_and_Silk.service.ProductService;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import com.Sugar_and_Silk.utils.SessionUtil;
 
 /**
- * Servlet implementation class ProductServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/product")
-public class ProductServlet extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/logout" })
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +28,11 @@ public class ProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductService service = new ProductService();
-	    
-	    try {
-	        List<ProductModel> productList = service.fetchAll();
-	        request.setAttribute("productList", productList);
-	    } catch (Exception e) {
-	        // Handle the exception 
-	        e.printStackTrace();
-	        request.setAttribute("errorMessage", "Could not load products.");
-	    }
+		// Used Session's invalidateSession method to logout
+        SessionUtil.invalidateSession(request);
 
-	    request.getRequestDispatcher("/WEB-INF/pages/product.jsp").forward(request, response);
+        // Redirect the user to the login page 
+        response.sendRedirect(request.getContextPath() + "/login");
 	}
 
 	/**

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +25,12 @@
             <a href="${pageContext.request.contextPath}/news"  style="color: var(--white)">News</a>
             </div>
             <div class="nav-actions">
-                <a href="#"  style="color: var(--white)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+                <a href="${pageContext.request.contextPath}/profile"  style="color: var(--white)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
                 </svg></a>
 
-                <a href="#"  style="color: var(--white)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+                <a href="${pageContext.request.contextPath}/cart"  style="color: var(--white)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                 <circle cx="9" cy="21" r="1"></circle>
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -40,8 +41,8 @@
             <h1>Indulge in Timeless <br>Elegance</h1>
             <h3>Handcrafted pastries and delicate <br>creations made to elevate every <br>moment.</h3>
             <div class="hero-buttons">
-                <button class="btn btn-primary">Shop Now</button>
-                <button class="btn btn-outline">Our Locations</button>
+         		<a href="${pageContext.request.contextPath}/product"><button class="btn btn-primary">Shop Now</button></a>
+                <a href="${pageContext.request.contextPath}/location"><button class="btn btn-outline">Our Locations</button></a>
             </div>
         </div>
         </div>
@@ -86,7 +87,7 @@
             </div>
         </div>
         <div class="all-products">
-            <button class="btn btn-primary">See All Products</button>
+            <a href="${pageContext.request.contextPath}/product"><button class="btn btn-primary">See All Products</button></a>
         </div>   
     </section>
 
@@ -94,7 +95,7 @@
         <div class="location-text">
             <h2>Our Locations</h2>
             <p>More than 20 locations all over in Nepal</p>
-            <button class="btn btn-primary">Discover Our Locations</button>        
+            <a href="${pageContext.request.contextPath}/location"><button class="btn btn-primary">Discover Our Locations</button></a>        
         </div>
     </section>
 
@@ -107,7 +108,7 @@
                 <h2>About Us</h2>
                 <p>At Sugar & Silk, we craft each creation with care, blending timeless techniques with refined flavors. Every pastry is designed to be both elegant and indulgent, offering a moment of quiet luxury in every bite.
                     From delicate confections to rich, decadent desserts, every piece is designed to offer a moment of elegance and comfort.  </p>
-                <button class="btn btn-primary">Learn More</button>
+                <a href="${pageContext.request.contextPath}/aboutus"><button class="btn btn-primary">Learn More</button></a>
             </div>
         </div>
     </section>
@@ -121,7 +122,7 @@
         </div>
         <div class="grid-container"> 
             <div class="grid-card">
-            	<a href="#" class="news-link">
+            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-mdsnmdsnmdsn-192933.jpg" alt="Pastry">
                     </div>
@@ -130,7 +131,7 @@
                 </a>
             </div>
             <div class="grid-card">
-            	<a href="#" class="news-link">
+            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-yasin-onus-520099596-36445004.jpg" alt="Pastry">
                     </div>
@@ -139,7 +140,7 @@
                  </a>
             </div>
             <div class="grid-card">
-            	<a href="#" class="news-link">
+            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-calvinseng-31688651.jpg" alt="Pastry">
                     </div>
@@ -148,7 +149,7 @@
                 </a>
             </div>
             <div class="grid-card">
-            	<a href="#" class="news-link">
+            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-yasin-onus-520099596-36445126.jpg" alt="Pastry">
                     </div>
@@ -158,7 +159,7 @@
             </div>
         </div>
         <div class="all-products">
-            <button class="btn btn-primary">View More</button>
+            <a href="${pageContext.request.contextPath}/news"><button class="btn btn-primary">View More</button></a>
         </div>   
         </div>
     </section>

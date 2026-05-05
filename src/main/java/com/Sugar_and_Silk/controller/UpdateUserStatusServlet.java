@@ -1,28 +1,25 @@
 package com.Sugar_and_Silk.controller;
 
-import java.io.IOException;
-import java.util.List;
-
-import com.Sugar_and_Silk.model.ProductModel;
-import com.Sugar_and_Silk.service.ProductService;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import com.Sugar_and_Silk.dao.UserDAO;
 
 /**
- * Servlet implementation class ProductServlet
+ * Servlet implementation class UpdateUserStatusServlet
  */
-@WebServlet("/product")
-public class ProductServlet extends HttpServlet {
+@WebServlet("/UpdateUserStatusServlet")
+public class UpdateUserStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private UserDAO userDAO = new UserDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductServlet() {
+    public UpdateUserStatusServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +28,22 @@ public class ProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductService service = new ProductService();
-	    
-	    try {
-	        List<ProductModel> productList = service.fetchAll();
-	        request.setAttribute("productList", productList);
-	    } catch (Exception e) {
-	        // Handle the exception 
-	        e.printStackTrace();
-	        request.setAttribute("errorMessage", "Could not load products.");
-	    }
-
-	    request.getRequestDispatcher("/WEB-INF/pages/product.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("WEB-INF/pages/dashboard.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            int status = Integer.parseInt(request.getParameter("status")); // 0 or 1
+            userDAO.updateUserStatus(userId, status);
+            response.sendRedirect(request.getContextPath() + "/dashboard");
+        } catch (Exception e) {
+            response.sendRedirect(request.getContextPath() + "/dashboard?error=true");
+        }
 	}
 
 }

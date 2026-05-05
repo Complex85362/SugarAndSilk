@@ -1,5 +1,7 @@
 package com.Sugar_and_Silk.dao;
+import com.Sugar_and_Silk.model.AddProductModel;
 import com.Sugar_and_Silk.model.ProductModel;
+import com.Sugar_and_Silk.model.UpdateProductModel;
 import com.Sugar_and_Silk.utils.DBconfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,4 +39,57 @@ public class ProductDAO {
 
 	    return productList;
 	}
+	
+	public int insertProduct(AddProductModel product) throws SQLException {
+        String query = "INSERT INTO product (Category_id, Product_Name, Product_description, "
+                     + "Product_price, Stock_quantity, Product_Image) VALUES (?, ?, ?, ?, ?, ?)";
+        
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, product.getCategoryId());
+            ps.setString(2, product.getProductName());
+            ps.setString(3, product.getProductDescription());
+            ps.setDouble(4, product.getProductPrice());
+            ps.setInt(5, product.getStockQuantity());
+            
+            // This handles the unique filename 
+            ps.setString(6, product.getProductImage());
+
+            return ps.executeUpdate(); 
+        } catch (SQLException e) {
+       
+            System.err.println("Error inserting product: " + e.getMessage());
+            throw e; 
+        }
+    }
+	public int deleteProduct(int productId) throws SQLException {
+	    String sql = "DELETE FROM product WHERE Product_ID = ?";
+	    try (Connection conn = DBconfig.getConnection(); //
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	        
+	        ps.setInt(1, productId);
+	        return ps.executeUpdate();
+	    }
+	}
+	
+	public int updateProduct(UpdateProductModel product) throws SQLException {
+	    String sql = "UPDATE product SET Category_id = ?, Product_Name = ?, Product_description = ?, "
+	               + "Product_price = ?, Stock_quantity = ? WHERE Product_ID = ?";
+	    
+	    try (Connection conn = DBconfig.getConnection(); 
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	        
+	        ps.setInt(1, product.getCategoryId());
+	        ps.setString(2, product.getProductName());
+	        ps.setString(3, product.getProductDescription());
+	        ps.setDouble(4, product.getProductPrice());
+	        ps.setInt(5, product.getStockQuantity());
+	        ps.setInt(6, product.getProductId()); 
+	        
+	        return ps.executeUpdate();
+	    }
+	}
+	
+	
 }
