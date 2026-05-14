@@ -61,40 +61,63 @@
         <div class="flex-container">
             <div class="form-row full">
                 <label>Product Name</label>
-                <input type="text" name="Product_Name" placeholder="e.g. Velvet Vanilla Bean Cake">
+                <input type="text" name="Product_Name" value="${name}" placeholder="e.g. Velvet Vanilla Bean Cake">
+                <c:if test="${errors.name != null}">
+                	<small class="error">${errors.name}</small>
+                </c:if>
             </div>
 
             <div class="form-row half">
                 <label>Category</label>
                 <select name="Category_id">
-                    <option value="" disabled selected>Select Category</option>
-                    <option value="1">Artisan Cakes</option>
-                    <option value="2">Daily Bread</option>
-                    <option value="3">Bakery Events</option>
-                    <option value="4">Flash Sales</option>
-                </select>
+				    <option value="" disabled
+				        <c:if test="${empty category}">selected</c:if>>
+				        Select Category
+				    </option>
+				
+				    <option value="1" <c:if test="${category == '1'}">selected</c:if>>Artisan Cakes</option>
+				    <option value="2" <c:if test="${category == '2'}">selected</c:if>>Daily Bread</option>
+				    <option value="3" <c:if test="${category == '3'}">selected</c:if>>Bakery Events</option>
+				    <option value="4" <c:if test="${category == '4'}">selected</c:if>>Flash Sales</option>
+				</select>
+				
+				<c:if test="${errors.category != null}">
+				    <small class="error">${errors.category}</small>
+				</c:if>
             </div>
 
             <div class="form-row half">
                 <label>Price ($)</label>
-                <input type="number" name="Product_price" step="0.01" placeholder="0.00">
+                <input type="number" name="Product_price" step="0.01" value="${price}" placeholder="0.00">
+                <c:if test="$errors.price != null">
+                	<small class="error">${errors.price}</small>
+                </c:if>
             </div>
 
             <div class="form-row full">
                 <label>Stock Quantity</label>
-                <input type="number" name="Stock_quantity" placeholder="Units available">
+                <input type="number" name="Stock_quantity" value="${stock}" placeholder="Units available">
+				<c:if test="${errors.stock != null}">
+				    <small class="error">${errors.stock}</small>
+				</c:if>
             </div>
 
             <div class="form-row full">
                 <label>Product Description</label>
-                <textarea name="Product_description" placeholder="Update flavor notes or allergens..."></textarea>
+				<textarea name="Product_description" placeholder="Update flavor notes or allergens...">${description}</textarea>
+				
+				<c:if test="${errors.description != null}">
+				    <small class="error">${errors.description}</small>
+				</c:if>
             </div>
             <div class="form-row full">
 
 			    <label>Product Image</label>
 			
 			    <div class="image-upload-box">
-			
+					<c:if test="${errors.image != null}">
+					    <small class="error">${errors.image}</small>
+					</c:if>
 			        <!-- Preview box -->
 			        <div class="image-preview">
 			            <i class="fa-solid fa-image" id="imagePlaceholder"></i>
