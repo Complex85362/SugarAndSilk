@@ -27,15 +27,13 @@ public class LoginServlet extends HttpServlet {
      */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -43,15 +41,24 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
-        String password = request.getParameter("password");
+		String password = request.getParameter("password");
 
-        LoginService service = new LoginService();
-        String status = service.authenticate(email, password);
+		LoginService service = new LoginService();
+		String status = service.authenticate(email, password);
 
-        if ("Success".equals(status)) {
+		if ("Success".equals(status)) {
             try {
                 UserDAO dao = new UserDAO();
                 UserModel userData = dao.getUserByEmail(email);
+                
+                // FIX: Look at the integer flag directly! 
+                // If getActive() returns 0, the account is inactive.
+                if (userData != null && userData.getActive() == 0) {
+                    request.setAttribute("showInactiveModal", "true"); // Passed as a strong request flag
+                    request.setAttribute("typedEmail", email); 
+                    request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+                    return; // Halt route propagation immediately
+                }
                 
                 // Store user object in session
                 SessionUtil.setAttribute(request, "user", userData, 3600);
@@ -59,24 +66,22 @@ public class LoginServlet extends HttpServlet {
                 // Add login time cookie
                 String loginTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss"));
                 CookieUtil.addCookie(response, "last_login", loginTime, 3600);
-                String role = userData.getUserRole();
                 
+                String role = userData.getUserRole();
                 if ("admin".equalsIgnoreCase(role)) {
                     response.sendRedirect(request.getContextPath() + "/dashboard");
                 } else {
-                    // Defaults to home for Customers or any other role
                     response.sendRedirect(request.getContextPath() + "/home");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                response.sendRedirect("login?error=db");
+                request.setAttribute("errorMessage", "Database interaction error occurred.");
+                request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             }
-        } else {
-            request.setAttribute("error", status);
-            request.setAttribute("typedEmail", email); 
-            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
-        }
-    }
+		} else {
+			request.setAttribute("errorMessage", status);
+			request.setAttribute("typedEmail", email);
+			request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+		}
 	}
-
-
+    }

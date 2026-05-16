@@ -65,6 +65,14 @@ public class UserModel {
     public void setProfileImage(String profileImage) { 
     	this.profileImage = profileImage;
     	}
+	public String getStatus() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void setStatus(String valueOf) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
     

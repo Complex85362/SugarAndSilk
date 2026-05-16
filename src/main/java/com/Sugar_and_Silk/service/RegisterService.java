@@ -1,48 +1,44 @@
 package com.Sugar_and_Silk.service;
 
-import com.Sugar_and_Silk.dao.UserDAO;
-import com.Sugar_and_Silk.utils.FileSaveUtil;
-import com.Sugar_and_Silk.utils.FileUploadUtil;
-import com.Sugar_and_Silk.utils.PasswordUtil;
-import com.Sugar_and_Silk.utils.ValidationUtil;
-
 import jakarta.servlet.http.Part;
+import com.Sugar_and_Silk.dao.UserDAO;
+import com.Sugar_and_Silk.utils.PasswordUtil;
 
 public class RegisterService {
-	UserDAO dao = new UserDAO();
-
-    public boolean registerUser(String firstname, String lastname, String username, 
-                                String gender, String address, String email, 
-                                String password, Part imagePart, String uploadDir) throws Exception {
-    	if (!ValidationUtil.isValidEmail(email)) {
+    
+    private UserDAO dao = new UserDAO();
+    
+    public boolean isUsernameTaken(String username) {
+        try {
+            return dao.checkUsernameExists(username);
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
-        
-        
-        // Check Uniqueness
-        if (dao.isUsernameOrEmailTaken(username, email)) {
-            return false;
-        }
-        // Hash the password for security
-        String hashedPassword = PasswordUtil.getHashPassword(password); 
-        
-        // Handle the Image Upload
-        String fileName = "profile_placeholder.png"; // Fallback image
-        
-        if (imagePart != null && imagePart.getSize() > 0 ) {
-        	if (FileUploadUtil.isImage(imagePart)) {
-                // Get the extension (e.g., .jpg, .png)
-                String extension = FileUploadUtil.getFileExtension(imagePart.getSubmittedFileName());
-                
-                // Name the file after the username
-                fileName = username + extension;
-                
-                // Save it to the physical device folder
-                FileUploadUtil.saveFile(imagePart, uploadDir, fileName);
-            }
-        }
-
-        // Send the prepared data to the DAO
-        return dao.insertUser(firstname, lastname, username, gender, address, email, hashedPassword, fileName);
     }
+    
+    public boolean isEmailTaken(String email) {
+        try {
+            return dao.checkEmailExists(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean registerUser(String firstName, String lastName, String username, String gender, 
+            String address, String email, String password, Part imagePart, String uploadDir) {
+try {
+String filename = (imagePart != null && imagePart.getSize() > 0) ? imagePart.getSubmittedFileName() : "default.png";
+
+// Hash the plain text password using your utility before saving it
+String hashedPassword = PasswordUtil.getHashPassword(password); 
+
+// Pass the secured hashed password to your DAO instead of the raw text
+return dao.insertUser(firstName, lastName, username, gender, address, email, hashedPassword, filename);
+} catch (Exception e) {
+e.printStackTrace();
+return false;
+}
+}
 }
