@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sugar & Silk | Command Center</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
 </head>
 
 <body>
