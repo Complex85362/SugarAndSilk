@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,49 +21,71 @@
         
         <div class="cart-container">
             <div class="cart-items">
-                <div class="item-card">
-                    <img src="${pageContext.request.contextPath}/images/tiramisu.jpg" alt="Tiramisu">
-                    <div class="item-details">
-                        <h3>Tiramisu</h3>
-                        <p class="price">Rs. 650</p>
-                        <div class="quantity-selector">
-                            <button>-</button>
-                            <input type="text" value="1" readonly>
-                            <button>+</button>
+                <c:choose>
+                    <c:when test="${empty cartItems}">
+                        <div class="empty-cart-message">
+                            <p>Your shopping cart is currently empty.</p>
                         </div>
-                    </div>
-                </div>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="item" items="${cartItems}">
+                            <div class="item-card">
+                                <img src="${pageContext.request.contextPath}/images/${item.imageUrl}" alt="${item.productName}">
+                                
+                                <div class="item-details">
+                                    <h3>${item.productName}</h3>
+                                    <p class="price">Rs. ${item.productPrice}</p>
+                                    
+                                    <form action="${pageContext.request.contextPath}/cart" method="POST" style="display:inline;">
+                                        <input type="hidden" name="productId" value="${item.productId}">
+                                        <input type="hidden" name="action" value="delete">
+                                        <button type="submit" style="background:none; border:none; color:#ba3c3c; cursor:pointer; font-size:13px; margin-top:8px; display:block; padding:0;">Remove Item</button>
+                                    </form>
+                                </div>
+                                
+                                <div class="quantity-selector">
+    <form action="${pageContext.request.contextPath}/cart" method="POST">
+        <input type="hidden" name="productId" value="${item.productId}">
+        <input type="hidden" name="action" value="update">
+        <input type="hidden" name="quantity" value="${item.quantity - 1}">
+        <button type="submit" class="minus-btn" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+    </form>
 
-                <div class="item-card">
-                    <img src="${pageContext.request.contextPath}/images/donut.jpg" alt="Donut">
-                    <div class="item-details">
-                        <h3>Donut</h3>
-                        <p class="price">Rs. 200</p>
-                        <div class="quantity-selector">
-                            <button>-</button>
-                            <input type="text" value="1" readonly>
-                            <button>+</button>
-                        </div>
-                    </div>
-                </div>
+    <span class="qty-display">${item.quantity}</span>
+
+    <form action="${pageContext.request.contextPath}/cart" method="POST">
+        <input type="hidden" name="productId" value="${item.productId}">
+        <input type="hidden" name="action" value="update">
+        <input type="hidden" name="quantity" value="${item.quantity + 1}">
+        <button type="submit" class="plus-btn">+</button>
+    </form>
+</div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <aside class="summary-box">
-                <h2>Summary</h2>
-                <div class="summary-row">
-                    <span>Sub Total</span>
-                    <span>Rs. 1500</span>
-                </div>
-                <div class="summary-row">
-                    <span>Taxes</span>
-                    <span>Rs. 150</span>
-                </div>
-                <div class="summary-total">
-                    <span>Total</span>
-                    <span>Rs. 1650</span>
-                </div>
-                <button class="checkout-btn">Proceed to Checkout</button>
-            </aside>
+			    <h2>Summary</h2>
+			    <div class="summary-row">
+			        <span>Sub Total</span>
+			        <span id="summary-subtotal">Rs. ${not empty subTotal ? subTotal : '0.00'}</span>
+			    </div>
+			    <div class="summary-row">
+			        <span>Taxes (10%)</span>
+			        <span id="summary-taxes">Rs. ${not empty taxes ? taxes : '0.00'}</span>
+			    </div>
+			    <div class="summary-total">
+			        <span>Total</span>
+			        <span id="summary-total">Rs. ${not empty total ? total : '0.00'}</span>
+			    </div>
+			    
+			    <form action="${pageContext.request.contextPath}/checkout" method="POST">
+			        <input type="hidden" name="checkoutTotal" value="${total}">
+			        <button type="submit" class="checkout-btn">Proceed to Checkout</button>
+			    </form>
+			</aside>
         </div>
     </main>
 
