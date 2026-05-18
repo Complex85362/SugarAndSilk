@@ -40,6 +40,41 @@ public class ProductDAO {
 	    return productList;
 	}
 	
+	public ProductModel getProductById(int productId) {
+
+	    ProductModel product = null;
+
+	    String sql = "SELECT * FROM product WHERE Product_ID = ?";
+
+	    try {
+	    	Connection conn = DBconfig.getConnection();
+	        PreparedStatement ps = conn.prepareStatement(sql);
+
+	        ps.setInt(1, productId);
+
+	        ResultSet rs = ps.executeQuery();
+
+	        if(rs.next()) {
+
+	            product = new ProductModel();
+
+	            product.setProductId(rs.getInt("Product_ID"));
+	            product.setProductName(rs.getString("Product_Name"));
+	            product.setProductDescription(rs.getString("Product_Description"));
+	            product.setProductPrice(rs.getDouble("Product_Price"));
+	            product.setStockQuantity(rs.getInt("Stock_Quantity"));
+	            product.setProductImage(rs.getString("Product_Image"));
+	        }
+
+	    }
+	    catch(Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return product;
+	}
+	
+	
 	public int insertProduct(AddProductModel product) throws SQLException {
         String query = "INSERT INTO product (Category_id, Product_Name, Product_description, "
                      + "Product_price, Stock_quantity, Product_Image) VALUES (?, ?, ?, ?, ?, ?)";

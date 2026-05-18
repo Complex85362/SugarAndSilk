@@ -34,9 +34,13 @@
                             <button class="add-btn">Add to Cart</button>
                       </div>
                     <div class="product-details">
-                        <a href="${pageContext.request.contextPath}/detail"><h3 class="product-title">${item.productName}</h3></a>
-						<a href="${pageContext.request.contextPath}/detail"><p class="product-price">Rs. ${item.productPrice}</p></a>
-                    </div>
+					    <a href="${pageContext.request.contextPath}/detail?productId=${item.productId}">
+					        <h3 class="product-title">${item.productName}</h3>
+					    </a>
+					    <a href="${pageContext.request.contextPath}/detail?productId=${item.productId}">
+					        <p class="product-price">Rs. ${item.productPrice}</p>
+					    </a>
+					</div>
                 </div>
             </c:forEach>
         </div>
