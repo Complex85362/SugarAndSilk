@@ -23,6 +23,8 @@
             <li><a href="${pageContext.request.contextPath}/dashboard" style="color: inherit;">Command Center</a></li>
             <li><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
             <li class="active"><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
+            <li><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
         </ul>
 
         <button class="logout">LOGOUT</button>
