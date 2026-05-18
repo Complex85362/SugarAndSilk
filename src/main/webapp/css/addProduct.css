@@ -8,7 +8,7 @@
 body {
     margin: 0;
     background: radial-gradient(circle at top left, #fffcfd, #fce4ec 100%);
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Inter', Arial, sans-serif;
     padding-right:20px;
 }
 
@@ -129,10 +129,8 @@ button {
     padding: 22px;
     border: none;
     border-radius: 50px;
-    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -188,6 +186,7 @@ button {
     display: block;
     font-size: 12px;
     color: #a0a0a0;
+    font-weight: normal;
 }
 
 .sidebar ul {
@@ -211,7 +210,20 @@ button {
 .sidebar ul li:hover,
 .sidebar .active {
     background: #fff0f3;
+}
+.sidebar ul li:hover a,
+.sidebar .active a{
     color: #ff4d8d;
+    font-weight: 600;
+}
+.sidebar .logo a.logo-link {
+    text-decoration: none;
+    color: inherit; 
+    display: inline-block;
+    width: 100%; 
+}
+.sidebar .logo a.logo-link:hover {
+    opacity: 0.9;
 }
 
 .logout {
@@ -224,6 +236,10 @@ button {
     border-radius: 12px;
     cursor: pointer;
     font-weight: bold;
+}
+.logout:hover {
+    background: #ff4d8d;
+    color: white;
 }
 .main-content {
     flex: 1;
@@ -241,7 +257,6 @@ button {
     min-height: 100vh;
     padding: 30px 20px;
     box-shadow: 2px 0 15px rgba(0,0,0,0.03);
-    font-family: 'Inter', Arial, sans-serif;
 }
 .sidebar ul li:hover a,
 .sidebar .active {

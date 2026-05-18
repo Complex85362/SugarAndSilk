@@ -34,6 +34,7 @@ body {
 .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
@@ -77,6 +78,15 @@ body {
 .logout:hover {
     background: #ff4d8d;
     color: white;
+}
+.sidebar .logo a.logo-link {
+    text-decoration: none;
+    color: inherit; 
+    display: inline-block;
+    width: 100%; 
+}
+.sidebar .logo a.logo-link:hover {
+    opacity: 0.9;
 }
 
 /* MAIN CONTENT */
