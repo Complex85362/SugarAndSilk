@@ -31,7 +31,6 @@ import com.Sugar_and_Silk.utils.ValidationUtil;
 	)
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIR =System.getProperty("user.home") + File.separator + "webapp_uploads";
 	private ProductDAO productDAO = new ProductDAO();
        
     /**
@@ -122,7 +121,7 @@ public class UpdateServlet extends HttpServlet {
  
         Map<String, String> errors = new HashMap<>();
  
-        // ── Backend Validation ────────────────────────────────────────────────
+        // Backend Validation 
  
         if (ValidationUtil.isNullOrEmpty(name)) {
             errors.put("name", "Product name is required.");
@@ -152,7 +151,7 @@ public class UpdateServlet extends HttpServlet {
             errors.put("image", "Only image files (JPG, PNG, GIF, etc.) are allowed.");
         }
  
-        // ── If validation failed, stay on the form with errors ────────────────
+        // ── If validation failed, stay on the form with errors ──
  
         if (!errors.isEmpty()) {
             try {
@@ -187,14 +186,15 @@ public class UpdateServlet extends HttpServlet {
             // Handle optional image replacement
             if (hasNewImage) {
                 String uniqueFileName = FileUploadUtil.generateUniqueFileName(name, imagePart.getSubmittedFileName());
-                FileUploadUtil.saveFile(imagePart, UPLOAD_DIR, uniqueFileName);
+                String uploadDir = getServletContext().getRealPath("/images/");
+                FileUploadUtil.saveFile(imagePart, uploadDir, uniqueFileName);
                 product.setProductImage(uniqueFileName);
             }
  
             int rowsAffected = productDAO.updateProduct(product);
  
             if (rowsAffected > 0) {
-                // Clear the session attribute so we don't stay in "edit mode"
+                // Clear the session attribute to not stay in "edit mode"
                 session.removeAttribute("productId");
                 session.setAttribute("updateSuccess", true);
                 response.sendRedirect(request.getContextPath() + "/productManagement");

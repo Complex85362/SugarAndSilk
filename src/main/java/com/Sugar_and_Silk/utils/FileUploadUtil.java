@@ -35,22 +35,33 @@ public class FileUploadUtil {
         return cleanName + "_" + System.currentTimeMillis() + extension;
     }
 
+
     /**
-     * The core saving engine: Checks/Creates directory and saves the file
+     * Saves the uploaded file to the primary upload directory (the deployed
+     * webapp's /images/ folder resolved by getRealPath).
+     *
+     * After saving, it also attempts to copy the file into the Maven project's
+     * src/main/webapp/images/ source folder.
      */
     public static void saveFile(Part part, String uploadDir, String fileName) throws IOException {
-        Path uploadPath = Paths.get(uploadDir);
-
-        // Create directory if it is not present
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
+    	Path deployedDir = Paths.get(uploadDir);
+        if (!Files.exists(deployedDir)) {
+            Files.createDirectories(deployedDir);
         }
-
-        Path filePath = uploadPath.resolve(fileName);
-
-
+        Path deployedFile = deployedDir.resolve(fileName);
         try (InputStream inputStream = part.getInputStream()) {
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, deployedFile, StandardCopyOption.REPLACE_EXISTING);
+        }
+        
+        try {
+            String classesLocation = FileUploadUtil.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            Path sourceImagesDir = Paths.get(classesLocation).getParent().getParent().resolve("src/main/webapp/images");
+ 
+            if (Files.exists(sourceImagesDir)) {
+                Files.copy(deployedFile, sourceImagesDir.resolve(fileName),StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (Exception e) {
+            System.out.println("Note: Could not copy image to source webapp folder. " + e.getMessage());
         }
 
 }

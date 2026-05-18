@@ -40,6 +40,13 @@ body{
     text-align:center;
 }
 
+.error-msg {
+    text-align: center;
+    color: var(--gold);
+    font-size: 18px;
+    margin: 40px 0 80px;
+}
+
 /* Grid System */
 .product-grid {
     display: grid;
@@ -76,7 +83,10 @@ body{
 .product-card .image-container img{
 	transform:scale(1.1);
 }
-
+.card-image-link {
+    display: block;
+    text-decoration: none;
+}
 
 .add-btn {
     background-color: var(--pink);
