@@ -1,11 +1,12 @@
 package com.Sugar_and_Silk.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import com.Sugar_and_Silk.dao.ReviewDAO;
 import com.Sugar_and_Silk.model.ReviewModel;
 import com.Sugar_and_Silk.model.UserModel;
 import com.Sugar_and_Silk.utils.SessionUtil;
+import com.Sugar_and_Silk.utils.ValidationUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,8 +34,38 @@ public class ReviewServlet extends HttpServlet {
 		try {
 
 			int productId = Integer.parseInt(request.getParameter("productId"));
-			int rating = Integer.parseInt(request.getParameter("rating"));
+			String ratingParam = request.getParameter("rating");
 			String comment = request.getParameter("comment");
+
+			int rating = 0;
+
+			try {
+
+			    rating = Integer.parseInt(ratingParam);
+
+			} catch (NumberFormatException e) {
+
+			    response.sendRedirect(
+			            request.getContextPath()
+			            + "/detail?productId="
+			            + productId
+			            + "&error=invalidReview");
+
+			    return;
+			}
+			
+			if (!ValidationUtil.isValidRating(rating)
+			        || !ValidationUtil.isValidComment(comment)) {
+
+			    response.sendRedirect(
+			            request.getContextPath()
+			            + "/detail?productId="
+			            + productId
+			            + "&error=invalidReview");
+
+			    return;
+			}
+			
 			HttpSession session = request.getSession();
 
 			UserModel loggedInUser = (UserModel) session.getAttribute("user");

@@ -77,6 +77,11 @@
         <section class="review-section">
 
             <h2>Customer Reviews</h2>
+            <c:if test="${param.error == 'invalidReview'}">
+			    <p style="color: red; margin-bottom: 15px;">
+			        Invalid review input.
+			    </p>
+			</c:if>
 			<c:if test="${param.error == 'reviewFailed'}">
 			    <p style="color: red; margin-bottom: 15px;">Failed to submit review. Please try again.</p>
 			</c:if>
