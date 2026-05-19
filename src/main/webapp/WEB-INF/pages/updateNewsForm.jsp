@@ -62,6 +62,7 @@
             <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
             <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
             <li class="active"><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
         </ul>
         <a href="${pageContext.request.contextPath}/logout">
             <button class="logout">LOGOUT</button>
