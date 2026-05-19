@@ -14,18 +14,18 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <div class="logo">S&S <span>Sugar & Silk</span></div>
+        <div class="logo">
+        <a href="${pageContext.request.contextPath}/home" class="logo-link">
+        S&S <span>Sugar & Silk</span>
+        </a></div>
 
         <ul>
-            <li><a href="${pageContext.request.contextPath}/dashboard">Command Center</a></li>
-            <li>Orders & Sales</li>
-
+           <li><a href="${pageContext.request.contextPath}/dashboard">Command Center</a></li>
             <li class="active"><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
-            <li><a href="${pageContext.request.contextPath}/updateProduct">Update Menu</a></li>
-
-            <li>Users</li>
-            <li>Inbox</li>
-            <li>Delivery Map</li>
+            <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
+            <li><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
         </ul>
 
         <button class="logout">LOGOUT</button>
@@ -89,7 +89,7 @@
             <div class="form-row half">
                 <label>Price ($)</label>
                 <input type="number" name="Product_price" step="0.01" value="${price}" placeholder="0.00">
-                <c:if test="$errors.price != null">
+                <c:if test="${errors.price != null}">
                 	<small class="error">${errors.price}</small>
                 </c:if>
             </div>
@@ -141,33 +141,7 @@
         </div>
     </form>
 	
-    <!-- DELETE SECTION (Side-by-Side) -->
-    <div class="delete-section">
-        <div class="divider small"></div>
-        <h2 class="delete-title">Delete Product</h2>
-        
-        <c:if test="${param.deleteSuccess == 'true'}">
-	    <div style="color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-	        <strong>Deleted!</strong> The product has been successfully removed from the database.
-	    </div>
-	</c:if>
-	
-	<%-- Error Alert --%>
-	<c:if test="${param.deleteError == 'true'}">
-	    <div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-	        <strong>Delete Failed!</strong> Could not find that Product ID or a database error occurred.
-	    </div>
-	</c:if>
-        <form action="DeleteProduct" method="post" class="delete-form">
-            <div class="delete-flex">
-                <div class="form-row">
-                    <label>ID to Remove</label>
-                    <input type="number" name="Product_ID" placeholder="Enter ID" required>
-                </div>
-                <button type="submit" class="btn-delete" onclick="return confirm('Are you sure?')">Delete Item</button>
-            </div>
-        </form>
-    </div>
+    
 </div>
 </div>
 </div>

@@ -31,7 +31,6 @@ import com.Sugar_and_Silk.utils.ValidationUtil;
 	)
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIR = System.getProperty("user.home") + File.separator + "webapp_uploads";
 	private ProductDAO productDAO = new ProductDAO();
 	private InventoryService service = new InventoryService();
        
@@ -115,10 +114,11 @@ public class AddProductServlet extends HttpServlet {
         int categoryId = Integer.parseInt(categoryStr);
         double price = Double.parseDouble(priceStr);
         int stock = Integer.parseInt(stockStr);
-
+        
+        String uploadDir = getServletContext().getRealPath("/images/");
         String fileName = FileUploadUtil.generateUniqueFileName(name,filePart.getSubmittedFileName());
-
-        FileUploadUtil.saveFile(filePart, UPLOAD_DIR, fileName);
+        
+        FileUploadUtil.saveFile(filePart, uploadDir, fileName);
 
         AddProductModel product = new AddProductModel(categoryId,name,description,price,stock,fileName);
 

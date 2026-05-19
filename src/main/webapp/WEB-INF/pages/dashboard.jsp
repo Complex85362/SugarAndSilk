@@ -15,18 +15,18 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <div class="logo">S&S <span>Sugar & Silk</span></div>
+        <div class="logo">
+        <a href="${pageContext.request.contextPath}/home" class="logo-link">
+        S&S <span>Sugar & Silk</span>
+        </a></div>
 
         <ul>
             <li class="active"><a href="${pageContext.request.contextPath}/dashboard" style="color: inherit;">Command Center</a></li>
-            <li>Orders & Sales</li>
-
             <li><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
-            <li><a href="${pageContext.request.contextPath}/updateProduct">Update Menu</a></li>
-
-            <li>Users</li>
-            <li>Inbox</li>
-            <li>Delivery Map</li>
+            <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
+            <li><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
         </ul>
 
         <button class="logout">LOGOUT</button>
@@ -39,10 +39,20 @@
         <div class="topbar">
             <h2>Command Center</h2>
 
-            <form action="${pageContext.request.contextPath}/dashboard" method="get" class="search-container">
-                <input type="number" name="searchId" placeholder="Enter User ID (e.g. 101)" value="${param.searchId}" min="1" step="1" required>
-                <button type="submit" class="search-btn">Search</button>
-            </form>
+            <div class="search-area">
+                <!-- Search by ID -->
+                <form action="${pageContext.request.contextPath}/dashboard" method="get" class="search-container">
+                    <input type="number" name="searchId" placeholder="Enter User ID (e.g. 101)" value="${param.searchId}" min="1" step="1">
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+
+                <%-- Show "Show All" only when a search is currently active --%>
+                <c:if test="${not empty param.searchId}">
+                    <a href="${pageContext.request.contextPath}/dashboard" class="show-all-btn">
+                        Show All
+                    </a>
+                </c:if>
+            </div>
         </div>
 
         <!-- CARDS -->

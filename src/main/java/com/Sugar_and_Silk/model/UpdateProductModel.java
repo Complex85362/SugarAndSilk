@@ -7,6 +7,7 @@ public class UpdateProductModel {
     private double productPrice;
     private int stockQuantity;
     private String productDescription;
+    private String productImage;
     
     
     public UpdateProductModel() {}
@@ -19,6 +20,7 @@ public class UpdateProductModel {
 			this.productPrice = productPrice;
 			this.stockQuantity = stockQuantity;
 			this.productDescription = productDescription;
+			this.productImage = null;
 }
     
     public int getProductId() {
@@ -61,5 +63,13 @@ public class UpdateProductModel {
     	}
     public void setProductDescription(String productDescription) {
     	this.productDescription = productDescription; 
+    	}
+    
+    public String getProductImage() { 
+    	return productImage; 
+    	}
+    
+    public void setProductImage(String productImage) { 
+    	this.productImage = productImage; 
     	}
 }

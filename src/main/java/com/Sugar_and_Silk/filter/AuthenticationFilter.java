@@ -19,7 +19,7 @@ import com.Sugar_and_Silk.utils.SessionUtil;
 /**
  * Servlet Filter implementation class AuthenticationFilter
  */
-@WebFilter(urlPatterns = {"/dashboard", "/addProduct", "/UpdateUserStatusServlet", "/updateProduct","/DeleteProduct"})
+@WebFilter(urlPatterns = {"/dashboard", "/addProduct", "/UpdateUserStatusServlet", "/updateProduct","/DeleteProduct", "/productManagement"})
 public class AuthenticationFilter extends HttpFilter implements Filter {
        
     /**
@@ -54,8 +54,9 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
                     path.equals("/UpdateUserStatusServlet") || 
                     path.equals("/getimage") || 
                     path.equals("/updateProduct") || 
-                    path.equals("/addProduct") || 
-                    path.equals("/DeleteProduct");
+                    path.equals("/addProduct") ||  
+                    path.equals("/DeleteProduct") || 
+                    path.equals("/productManagement");
             if (isAdminPath) {
                 if ("admin".equalsIgnoreCase(role)) {
                     // Admins are allowed to proceed to these restricted paths
