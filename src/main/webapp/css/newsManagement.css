@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* --- Table View Heading Attributes --- */
+/* --- Table Log Headers --- */
 .table-container h3 {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
@@ -9,24 +9,41 @@
     margin-bottom: 20px;
 }
 
-.product-name-cell {
+/* Gracefully handle extremely long blog/news titles */
+.news-title-cell {
     font-weight: 600;
     color: #1F1A17;
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Appends clean trailing dots if title overflows line bounds */
 }
 
-.price-cell {
+.date-cell {
     font-weight: 500;
-    color: #444;
+    color: #555;
+    font-size: 13px;
 }
 
-/* --- Feedback Flash Alerts Block --- */
+/* Feature Image Thumbnail Frame inside rows */
+.news-thumbnail {
+    width: 65px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #F0F0F0;
+    display: block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+/* --- Feedback Status Notification Blocks --- */
 .alert {
     padding: 14px 20px;
     border-radius: 12px;
     margin-bottom: 25px;
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: slideDown 0.3s ease-in-out;
 }
 
 .alert-success {
@@ -41,33 +58,7 @@
     color: #C62828;
 }
 
-/* --- Informative Stocks Badges --- */
-.stock-badge {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    display: inline-block;
-    text-align: center;
-    min-width: 38px;
-}
-
-.stock-badge.stock-ok {
-    background-color: #E8F5E9;
-    color: #4CAF50;
-}
-
-.stock-badge.stock-low {
-    background-color: #FFF3E0;
-    color: #FF9800;
-}
-
-.stock-badge.stock-out {
-    background-color: #FFEBEE;
-    color: #F44336;
-}
-
-/* --- Fine-tuned Control Alignment Triggers --- */
+/* --- Fine-tuned Horizontal Button Triggers --- */
 .action-cell {
     display: flex;
     gap: 10px;
@@ -87,6 +78,11 @@
     transition: all 0.2s ease;
     width: 95px;
     text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    text-decoration: none; /* Strip link underlines */
 }
 
 .action-btn.btn-update {
@@ -116,7 +112,7 @@
     padding: 20px 0;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
     to { opacity: 1; transform: translateY(0); }
 }

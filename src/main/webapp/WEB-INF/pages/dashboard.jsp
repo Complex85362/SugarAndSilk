@@ -1,159 +1,111 @@
-<%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sugar & Silk | Command Center</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dashboard.css?v=4.6">
 </head>
-
 <body>
-<div class="container">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="logo">
-        <a href="${pageContext.request.contextPath}/home" class="logo-link">
-        S&S <span>Sugar & Silk</span>
-        </a></div>
+    <div class="admin-layout">
+        
+        <aside class="sidebar-panel">
+            <div class="sidebar-brand">
+                <a href="${pageContext.request.contextPath}/home" class="sidebar-brand-link">
+                    <h2>S&S</h2>
+                    <span>Sugar & Silk</span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="${pageContext.request.contextPath}/dashboard" class="menu-item active">Command Center</a>
+                <a href="${pageContext.request.contextPath}/addProduct" class="menu-item">Add Product</a>
+                <a href="${pageContext.request.contextPath}/productManagement" class="menu-item">Product Management</a>
+                <a href="${pageContext.request.contextPath}/addNews" class="menu-item">Add News</a>
+                <a href="${pageContext.request.contextPath}/newsManagement" class="menu-item">News Management</a>
+                <a href="${pageContext.request.contextPath}/enquiryManagement" class="menu-item">Enquiries</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="${pageContext.request.contextPath}/logout" class="logout-btn">LOGOUT</a>
+            </div>
+        </aside>
 
-        <ul>
-            <li class="active"><a href="${pageContext.request.contextPath}/dashboard" style="color: inherit;">Command Center</a></li>
-            <li><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
-            <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
-            <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
-            <li><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
-            <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
-        </ul>
+        <main class="content-panel">
+            <header class="content-header">
+                <h1>Command Center</h1>
+            </header>
 
-        <button class="logout">LOGOUT</button>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div class="main">
-
-        <!-- TOP BAR -->
-        <div class="topbar">
-            <h2>Command Center</h2>
-
-            <div class="search-area">
-                <!-- Search by ID -->
-                <form action="${pageContext.request.contextPath}/dashboard" method="get" class="search-container">
-                    <input type="number" name="searchId" placeholder="Enter User ID (e.g. 101)" value="${param.searchId}" min="1" step="1">
+            <div class="search-workspace">
+                <form action="${pageContext.request.contextPath}/dashboard" method="get" class="search-form">
+                    <input type="text" name="searchUser" placeholder="Search users by name or email..." value="${param.searchUser}">
                     <button type="submit" class="search-btn">Search</button>
                 </form>
-
-                <%-- Show "Show All" only when a search is currently active --%>
-                <c:if test="${not empty param.searchId}">
-                    <a href="${pageContext.request.contextPath}/dashboard" class="show-all-btn">
-                        Show All
-                    </a>
-                </c:if>
-            </div>
-        </div>
-
-        <!-- CARDS -->
-        <div class="cards">
-            <div class="card">
-                <p>Today's Revenue</p>
-                <h3>$4,820.50</h3>
             </div>
 
-            <div class="card">
-                <p>Oven Schedule</p>
-                <h3>Batch #42</h3>
-                <span>Macarons: 12m left</span>
+            <div class="table-container">
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th style="text-align: center;">Action</th>
+                        </tr>
+                    </thead>
+                    <%-- Note: No tbody wrapper tags used here to stay synchronized --%>
+                    <c:choose>
+                        <c:when test="${not empty userList}">
+                            <c:forEach var="managedUser" items="${userList}">
+                                <tr>
+                                    <td class="user-name-cell">${managedUser.username}</td>
+                                    <td><span class="role-badge ${managedUser.userRole}">${managedUser.userRole}</span></td>
+                                    <td>
+                                        <span class="status-indicator ${managedUser.active == 1 ? 'active' : 'inactive'}">
+                                            ${managedUser.active == 1 ? 'Active' : 'Inactive'}
+                                        </span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <form action="${pageContext.request.contextPath}/updateUserStatus" method="post" style="display:inline;">
+                                            <input type="hidden" name="userId" value="${managedUser.userId}">
+                                            <input type="hidden" name="currentStatus" value="${managedUser.active}">
+                                            <c:choose>
+                                                <c:when test="${managedUser.active == 1}">
+                                                    <button type="submit" class="action-btn deactivate">Deactivate</button>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <button type="submit" class="action-btn activate">Activate</button>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <tr>
+                                <td class="user-name-cell">rubin_admin</td>
+                                <td><span class="role-badge admin">admin</span></td>
+                                <td><span class="status-indicator active">Active</span></td>
+                                <td style="text-align: center;"><button class="action-btn deactivate">Deactivate</button></td>
+                            </tr>
+                            <tr>
+                                <td class="user-name-cell">sunila_kayastha</td>
+                                <td><span class="role-badge customer">customer</span></td>
+                                <td><span class="status-indicator inactive">Inactive</span></td>
+                                <td style="text-align: center;"><button class="action-btn activate">Activate</button></td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
+                </table>
             </div>
-
-            <div class="card">
-                <p>Active Deliveries</p>
-                <h3>8 Drivers</h3>
-                <span>4 Out / 4 Idle</span>
-            </div>
-        </div>
-
-		<!-- USER MANAGEMENT SECTION -->
-		<div class="section">
-		    <h3>User Management</h3>
-		    <table>
-		        <thead>
-		            <tr>
-		                <th>Username</th>
-		                <th>Email</th>
-		                <th>Role</th>
-		                <th>Status</th>
-		                <th>Action</th>
-		            </tr>
-		        </thead>
-		        <tbody>
-		            <c:forEach var="user" items="${userList}">
-		                <tr>
-		                    <td>${user.username}</td>
-		                    <td>${user.email}</td>
-		                    <td>${user.userRole}</td>
-		                    <td>
-		                        <span class="${user.active == 1 ? 'active-status' : 'inactive-status'}">
-		                            ${user.active == 1 ? 'Active' : 'Inactive'}
-		                        </span>
-		                    </td>
-		                    <td>
-		                        <form action="${pageContext.request.contextPath}/UpdateUserStatusServlet" method="post">
-		                            <input type="hidden" name="userId" value="${user.userId}">
-		                            <c:choose>
-		                                <c:when test="${user.active == 1}">
-		                                    <input type="hidden" name="status" value="0">
-		                                    <button type="submit" class="btn-deactivate">Deactivate</button>
-		                                </c:when>
-		                                <c:otherwise>
-		                                    <input type="hidden" name="status" value="1">
-		                                    <button type="submit" class="btn-activate">Activate</button>
-		                                </c:otherwise>
-		                            </c:choose>
-		                        </form>
-		                    </td>
-		                </tr>
-		            </c:forEach>
-		        </tbody>
-		    </table>
-		</div>
-        <!-- MENU & INVENTORY -->
-        <div class="section">
-            <h3>Menu & Inventory</h3>
-
-            <div class="item">
-                <p>Blueberry Cheesecake (Stock: 420)</p>
-                <div class="bar"><div class="fill green" style="width: 85%;"></div></div>
-            </div>
-
-            <div class="item">
-                <p>Classic Croissant (Stock: 15)</p>
-                <div class="bar"><div class="fill orange" style="width: 20%;"></div></div>
-            </div>
-        </div>
-
+        </main>
     </div>
-</div>
-
-<script>
-/**
- * Updates the 'Status' badge text and color when the toggle switch is flipped
- */
-function toggleStatus(checkbox) {
-    let row = checkbox.closest("tr");
-    let statusSpan = row.querySelector("td span");
-
-    if (checkbox.checked) {
-        statusSpan.className = "active-status";
-        statusSpan.innerText = "Active";
-    } else {
-        statusSpan.className = "inactive-status";
-        statusSpan.innerText = "Inactive";
-    }
-}
-</script>
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 package com.Sugar_and_Silk.model;
 
 public class UserModel {
-	private int userId;
-	private String firstName;
+    private int userId;
+    private String firstName;
     private String lastName;
     private String password;
     private String profileImage;
@@ -10,69 +10,93 @@ public class UserModel {
     private String email;
     private String userRole;
     private int active;
+    private String address;     // ADDED FIELD
+    private String phoneNumber; // ADDED FIELD
     
     public int getUserId() { 
-    	return userId; 
-    	}
+        return userId; 
+    }
     public void setUserId(int userId) {
-    	this.userId = userId; 
-    	}
+        this.userId = userId; 
+    }
+    
     public String getUsername() {
-    	return username; 
-    	}
+        return username; 
+    }
     public void setUsername(String username) {
-    	this.username = username; 
-    	}
+        this.username = username; 
+    }
+    
     public String getEmail() {
-    	return email; 
-    	}
+        return email; 
+    }
     public void setEmail(String email) {
-    	this.email = email; 
-    	}
+        this.email = email; 
+    }
+    
     public String getUserRole() {
-    	return userRole; 
-    	}
+        return userRole; 
+    }
     public void setUserRole(String userRole) {
-    	this.userRole = userRole; 
-    	}
+        this.userRole = userRole; 
+    }
+    
     public int getActive() {
-    	return active; 
-    	}
+        return active; 
+    }
     public void setActive(int active) {
-    	this.active = active; 
-    	}
+        this.active = active; 
+    }
+    
     public String getPassword() { 
-    	return password; }
-    
+        return password; 
+    }
     public void setPassword(String password) { 
-    	this.password = password;
-    	}
+        this.password = password;
+    }
+    
     public String getFirstName() { 
-    	return firstName; }
-    
+        return firstName; 
+    }
     public void setFirstName(String firstName) { 
-    	this.firstName = firstName;
-    	}
+        this.firstName = firstName;
+    }
+    
     public String getLastName() { 
-    	return lastName; }
-    
+        return lastName; 
+    }
     public void setLastName(String lastName) { 
-    	this.lastName = lastName;
-    	}
+        this.lastName = lastName;
+    }
+    
     public String getProfileImage() { 
-    	return profileImage; }
-    
+        return profileImage; 
+    }
     public void setProfileImage(String profileImage) { 
-    	this.profileImage = profileImage;
-    	}
-	public String getStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void setStatus(String valueOf) {
-		// TODO Auto-generated method stub
-		
-	}
+        this.profileImage = profileImage;
+    }
     
+    // FIX: Added explicit Address Java Bean methods for JSP Expression Language access
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    // FIX: Added explicit Phone Number Java Bean methods for JSP Expression Language access
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
+    // Status stubs (kept for backward compatibility with other servlets if needed)
+    public String getStatus() {
+        return null;
+    }
+    public void setStatus(String status) {
+        
+    }
 }
-    

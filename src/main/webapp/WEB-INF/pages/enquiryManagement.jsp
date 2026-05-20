@@ -7,53 +7,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sugar & Silk | Enquiry Management</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productManagement.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dashboard.css?v=4.6">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/enquiryManagement.css?v=4.6">
 </head>
 <body>
-<div class="container">
 
-    <%-- SIDEBAR --%>
-    <div class="sidebar">
-        <div class="logo">
-            <a href="${pageContext.request.contextPath}/home" class="logo-link">
-                S&amp;S <span>Sugar &amp; Silk</span>
-            </a>
-        </div>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/dashboard">Command Center</a></li>
-            <li><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
-            <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
-            <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
-            <li><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
-        </ul>
-        <button class="logout">LOGOUT</button>
-    </div>
+    <div class="admin-layout">
 
-    <%-- MAIN --%>
-    <div class="main">
-
-        <div class="topbar">
-            <h2>Customer Enquiries</h2>
-        </div>
-
-        <c:if test="${not empty errorMessage}">
-            <div class="alert alert-error">
-                <strong>Error!</strong> ${errorMessage}
+        <aside class="sidebar-panel">
+            <div class="sidebar-brand">
+                <a href="${pageContext.request.contextPath}/home" class="sidebar-brand-link">
+                    <h2>S&S</h2>
+                    <span>Sugar & Silk</span>
+                </a>
             </div>
-        </c:if>
+            
+            <nav class="sidebar-menu">
+                <a href="${pageContext.request.contextPath}/dashboard" class="menu-item">Command Center</a>
+                <a href="${pageContext.request.contextPath}/addProduct" class="menu-item">Add Product</a>
+                <a href="${pageContext.request.contextPath}/productManagement" class="menu-item">Product Management</a>
+                <a href="${pageContext.request.contextPath}/addNews" class="menu-item">Add News</a>
+                <a href="${pageContext.request.contextPath}/newsManagement" class="menu-item">News Management</a>
+                <a href="${pageContext.request.contextPath}/enquiryManagement" class="menu-item active">Enquiries</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="${pageContext.request.contextPath}/logout" class="logout-btn">LOGOUT</a>
+            </div>
+        </aside>
 
-        <%-- ENQUIRY TABLE --%>
-        <div class="section">
-            <h3>All Enquiries</h3>
+        <main class="content-panel">
 
-            <c:choose>
-                <c:when test="${empty enquiryList}">
-                    <p class="empty-msg">No enquiries have been submitted yet.</p>
-                </c:when>
-                <c:otherwise>
-                    <div class="table-wrapper">
-                        <table>
+            <header class="content-header">
+                <h1>Customer Enquiries</h1>
+            </header>
+
+            <c:if test="${not empty errorMessage}">
+                <div class="alert alert-error">
+                    <strong>Error!</strong> ${errorMessage}
+                </div>
+            </c:if>
+
+            <div class="table-container">
+                <h3>All Enquiries</h3>
+
+                <c:choose>
+                    <c:when test="${empty enquiryList}">
+                        <p class="empty-msg">No enquiries have been submitted yet.</p>
+                    </c:when>
+                    <c:otherwise>
+                        <table class="management-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -65,53 +69,54 @@
                                     <th>Submitted</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <c:forEach var="enquiry" items="${enquiryList}">
-                                    <tr>
-                                        <td>${enquiry.enquiryId}</td>
-                                        <td>${enquiry.firstName} ${enquiry.lastName}</td>
-                                        <td>${enquiry.email}</td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${not empty enquiry.phone}">
-                                                    ${enquiry.phone}
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span style="color:#bbb;">—</span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${not empty enquiry.subject}">
-                                                    ${enquiry.subject}
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span style="color:#bbb;">—</span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td style="max-width:280px;white-space:normal;word-break:break-word;">
-                                            <c:choose>
-                                                <c:when test="${not empty enquiry.message}">
-                                                    ${enquiry.message}
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span style="color:#bbb;">—</span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td style="white-space:nowrap;">${enquiry.submittedAt}</td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
+                            
+                            <%-- FIX: Strictly avoiding tbody wrapper tag to eliminate template compiler mismatch bugs --%>
+                            <c:forEach var="enquiry" items="${enquiryList}">
+                                <tr>
+                                    <td><strong>#${enquiry.enquiryId}</strong></td>
+                                    <td class="user-name-cell">${enquiry.firstName} ${enquiry.lastName}</td>
+                                    <td class="email-cell">${enquiry.email}</td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${not empty enquiry.phone}">
+                                                ${enquiry.phone}
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="null-dash">—</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="subject-cell">
+                                        <c:choose>
+                                            <c:when test="${not empty enquiry.subject}">
+                                                ${enquiry.subject}
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="null-dash">—</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="message-cell">
+                                        <c:choose>
+                                            <c:when test="${not empty enquiry.message}">
+                                                ${enquiry.message}
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="null-dash">—</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td class="date-cell">${enquiry.submittedAt}</td>
+                                </tr>
+                            </c:forEach>
+                            
                         </table>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
 
+        </main>
     </div>
-</div>
+
 </body>
 </html>

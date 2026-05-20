@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/* --- Table Headers and Subtitles --- */
+.table-container h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1F1A17;
+    margin-bottom: 20px;
+}
+
+.user-name-cell {
+    font-weight: 600;
+    color: #1F1A17;
+    white-space: nowrap;
+}
+
+.email-cell {
+    color: #1D8CF8;
+    font-size: 13px;
+}
+
+.date-cell {
+    font-size: 13px;
+    color: #666;
+    white-space: nowrap;
+}
+
+/* --- Fine-Tuned Text Columns Boundaries --- */
+.subject-cell {
+    font-weight: 600;
+    color: #444;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.message-cell {
+    max-width: 260px;
+    min-width: 180px;
+    white-space: normal !important; /* Overrides default dashboard layout to permit lines wrapping */
+    word-break: break-word !important; /* Force-breaks long string links safely */
+    line-height: 1.5;
+    font-size: 13px;
+    color: #555;
+}
+
+.null-dash {
+    color: #bbb;
+    font-weight: 300;
+}
+
+/* --- Feedback Error Alert Box --- */
+.alert-error {
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFEBEE;
+    border: 1px solid #FFCDD2;
+    color: #C62828;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.empty-msg {
+    color: #888;
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

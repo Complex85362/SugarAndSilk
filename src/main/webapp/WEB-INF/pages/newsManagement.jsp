@@ -7,130 +7,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sugar & Silk | News Management</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productManagement.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dashboard.css?v=4.6">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/newsManagement.css?v=4.6">
 </head>
 <body>
-<div class="container">
 
-    <div class="sidebar">
-        <div class="logo">
-        <a href="${pageContext.request.contextPath}/home" class="logo-link">
-        S&S <span>Sugar & Silk</span>
-        </a></div>
+    <div class="admin-layout">
 
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/dashboard">Command Center</a></li>
-            <li><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
-            <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
-            <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
-            <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
-        </ul>
-
-        <button class="logout">LOGOUT</button>
-    </div>
-
-
-    <div class="main">
-
-        <div class="topbar">
-            <h2>News Management</h2>
-        </div>
-
-
-        <c:if test="${sessionScope.updateNewsSuccess == true}">
-            <div class="alert alert-success">
-                <strong>Updated!</strong> The news article has been successfully updated.
+        <aside class="sidebar-panel">
+            <div class="sidebar-brand">
+                <a href="${pageContext.request.contextPath}/home" class="sidebar-brand-link">
+                    <h2>S&S</h2>
+                    <span>Sugar & Silk</span>
+                </a>
             </div>
-            <c:remove var="updateNewsSuccess" scope="session"/>
-        </c:if>
-
-        <c:if test="${sessionScope.updateNewsError == true}">
-            <div class="alert alert-error">
-                <strong>Update Failed!</strong> Something went wrong. Please try again.
+            
+            <nav class="sidebar-menu">
+                <a href="${pageContext.request.contextPath}/dashboard" class="menu-item">Command Center</a>
+                <a href="${pageContext.request.contextPath}/addProduct" class="menu-item">Add Product</a>
+                <a href="${pageContext.request.contextPath}/productManagement" class="menu-item">Product Management</a>
+                <a href="${pageContext.request.contextPath}/addNews" class="menu-item">Add News</a>
+                <a href="${pageContext.request.contextPath}/newsManagement" class="menu-item active">News Management</a>
+                <a href="${pageContext.request.contextPath}/enquiryManagement" class="menu-item">Enquiries</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="${pageContext.request.contextPath}/logout" class="logout-btn">LOGOUT</a>
             </div>
-            <c:remove var="updateNewsError" scope="session"/>
-        </c:if>
+        </aside>
 
-        <c:if test="${sessionScope.deleteNewsSuccess == true}">
-            <div class="alert alert-success">
-                <strong>Deleted!</strong> The news article has been removed.
-            </div>
-            <c:remove var="deleteNewsSuccess" scope="session"/>
-        </c:if>
+        <main class="content-panel">
+            <header class="content-header">
+                <h1>News Management</h1>
+            </header>
 
-        <c:if test="${sessionScope.deleteNewsError == true}">
-            <div class="alert alert-error">
-                <strong>Delete Failed!</strong> Could not find that article or a database error occurred.
-            </div>
-            <c:remove var="deleteNewsError" scope="session"/>
-        </c:if>
+            <c:if test="${sessionScope.updateNewsSuccess == true}">
+                <div class="alert alert-success">
+                    <strong>Updated!</strong> The news article has been successfully updated.
+                </div>
+                <c:remove var="updateNewsSuccess" scope="session"/>
+            </c:if>
+            <c:if test="${sessionScope.deleteNewsSuccess == true}">
+                <div class="alert alert-success">
+                    <strong>Deleted!</strong> The news article has been removed.
+                </div>
+                <c:remove var="deleteNewsSuccess" scope="session"/>
+            </c:if>
 
-        <%-- News table --%>
-        <div class="section">
-            <h3>All News Articles</h3>
-
-            <c:choose>
-                <c:when test="${empty newsList}">
-                    <p class="empty-msg">No news articles have been published yet.</p>
-                </c:when>
-                <c:otherwise>
-                    <div class="table-wrapper">
-                        <table>
+            <div class="table-container">
+                <h3>All News Articles</h3>
+                <c:choose>
+                    <c:when test="${empty newsList}">
+                        <p class="empty-msg">No news articles have been published yet.</p>
+                    </c:when>
+                    <c:otherwise>
+                        <table class="management-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Image</th>
-                                    <th>Published</th>
-                                    <th>Actions</th>
+                                    <th>Published Date</th>
+                                    <th style="text-align: center;">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <c:forEach var="n" items="${newsList}">
-                                    <tr>
-                                        <td>${n.newsId}</td>
-                                        <td>${n.title}</td>
-                                        <td>
-                                            <img src="${pageContext.request.contextPath}/images/${n.imagePath}"
-                                                 alt="${n.title}"
-                                                 style="width:60px;height:40px;object-fit:cover;border-radius:6px;">
-                                        </td>
-                                        <td>${n.publishDate}</td>
-                                        <td class="action-cell">
-
-                                            <%-- UPDATE --%>
-                                            <a href="${pageContext.request.contextPath}/updateNews?id=${n.newsId}"
-                                               class="btn-update"
-                                               style="text-decoration:none;display:inline-block;
-                                                      padding:6px 14px;border-radius:8px;
-                                                      background:#C5A059;color:white;font-size:13px;">
-                                                Update
-                                            </a>
-
-                                            <%-- DELETE --%>
-                                            <form action="${pageContext.request.contextPath}/newsManagement"
-                                                  method="post"
-                                                  style="display:inline;">
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="News_id" value="${n.newsId}">
-                                                <button type="submit" class="btn-delete"
-                                                        onclick="return confirm('Delete &quot;${n.title}&quot;? This cannot be undone.');">
-                                                    Delete
-                                                </button>
-                                            </form>
-
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
+                            <%-- Note: Strictly avoiding tbody wrapper tags to prevent compiler mismatch errors --%>
+                            <c:forEach var="n" items="${newsList}">
+                                <tr>
+                                    <td><strong>#${n.newsId}</strong></td>
+                                    <td class="news-title-cell">${n.title}</td>
+                                    <td>
+                                        <img src="${pageContext.request.contextPath}/images/${n.imagePath}" alt="${n.title}" class="news-thumbnail">
+                                    </td>
+                                    <td class="date-cell">${n.publishDate}</td>
+                                    <td class="action-cell">
+                                        <a href="${pageContext.request.contextPath}/updateNews?id=${n.newsId}" class="action-btn btn-update">
+                                            Update
+                                        </a>
+                                        <form action="${pageContext.request.contextPath}/newsManagement" method="post" style="display:inline;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="News_id" value="${n.newsId}">
+                                            <button type="submit" class="action-btn btn-delete" onclick="return confirm('Delete &quot;${n.title}&quot;? This cannot be undone.');">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </table>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-        </div>
-
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </main>
     </div>
-</div>
+
 </body>
 </html>

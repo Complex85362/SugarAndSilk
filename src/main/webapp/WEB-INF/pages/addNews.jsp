@@ -7,137 +7,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sugar &amp; Silk | Add News</title>
-    <%-- Reuse addProduct.css — same sidebar, form, and button styles --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addProduct.css">
-    <style>
-        textarea.news-content {
-            height: 200px;
-            resize: vertical;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dashboard.css?v=4.6">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addNews.css?v=4.6">
 </head>
 <body>
-<div class="container">
 
-    <div class="sidebar">
-        <div class="logo">
-        <a href="${pageContext.request.contextPath}/home" class="logo-link">
-        S&S <span>Sugar & Silk</span>
-        </a>
-        </div>
+    <div class="admin-layout">
 
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/dashboard">Command Center</a></li>
-            <li><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
-            <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
-            <li><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
-            <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
-        </ul>
-
-        <button class="logout">LOGOUT</button>
-    </div>
-
-    <div class="main-content">
-    <div class="wrapper">
-
-        <%-- Header --%>
-        <div class="form-header">
-            <h1 class="bakery-name">Sugar &amp; Silk</h1>
-            <div class="divider"></div>
-            <h2>News Management</h2>
-        </div>
-
-        <%-- Success message --%>
-        <c:if test="${param.success == 'true'}">
-            <div style="color:#155724;background:#d4edda;border:1px solid #c3e6cb;
-                        padding:10px;border-radius:5px;margin-bottom:20px;">
-                <strong>Published!</strong> The news article has been added successfully.
+        <aside class="sidebar-panel">
+            <div class="sidebar-brand">
+                <a href="${pageContext.request.contextPath}/home" class="sidebar-brand-link">
+                    <h2>S&S</h2>
+                    <span>Sugar & Silk</span>
+                </a>
             </div>
-        </c:if>
-
-        <%-- Error message --%>
-        <c:if test="${param.error == 'true'}">
-            <div style="color:#721c24;background:#f8d7da;border:1px solid #f5c6cb;
-                        padding:10px;border-radius:5px;margin-bottom:20px;">
-                <strong>Error!</strong> There was a problem saving the article. Please try again.
+            
+            <nav class="sidebar-menu">
+                <a href="${pageContext.request.contextPath}/dashboard" class="menu-item">Command Center</a>
+                <a href="${pageContext.request.contextPath}/addProduct" class="menu-item">Add Product</a>
+                <a href="${pageContext.request.contextPath}/productManagement" class="menu-item">Product Management</a>
+                <a href="${pageContext.request.contextPath}/addNews" class="menu-item active">Add News</a>
+                <a href="${pageContext.request.contextPath}/newsManagement" class="menu-item">News Management</a>
+                <a href="${pageContext.request.contextPath}/enquiryManagement" class="menu-item">Enquiries</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="${pageContext.request.contextPath}/logout" class="logout-btn">LOGOUT</a>
             </div>
-        </c:if>
+        </aside>
 
-        <%-- FORM --%>
-        <form action="${pageContext.request.contextPath}/addNews"
-              method="post"
-              enctype="multipart/form-data">
-
-            <div class="flex-container">
-
-                <%-- Title --%>
-                <div class="form-row full">
-                    <label>News Title</label>
-                    <input type="text" name="Title" value="${title}" placeholder="e.g. Our New Summer Collection Has Arrived">
-                    <c:if test="${errors.title != null}">
-                        <small class="error">${errors.title}</small>
-                    </c:if>
+        <main class="content-panel">
+            <div class="wrapper">
+                <div class="form-header">
+                    <h1 class="bakery-name">Sugar &amp; Silk</h1>
+                    <div class="divider"></div>
+                    <h2>News Management</h2>
                 </div>
 
-                
-                <div class="form-row full">
-                    <label>News Content</label>
-                    <textarea name="Content" class="news-content" placeholder="Write the full article here...">${content}</textarea>
-                    <c:if test="${errors.content != null}">
-                        <small class="error">${errors.content}</small>
-                    </c:if>
-                </div>
-
-                
-                <div class="form-row full">
-                    <label>News Image</label>
-                    <c:if test="${errors.image != null}">
-                        <small class="error">${errors.image}</small>
-                    </c:if>
-                    <div class="image-upload-box">
-                        <div class="image-preview">
-                            <i id="newsPlaceholder" style="font-size:28px;color:#e17899;">&#128247;</i>
-                            <img id="newsPreview" src="#" alt="Preview Image" style="display:none;width:100%;height:100%;object-fit:cover;">
-                        </div>
-                        <label class="image-upload-btn">
-                            Choose Image
-                            <input type="file" name="Image_Path" accept="image/*" onchange="previewNewsImage()">
-                        </label>
+                <c:if test="${param.success == 'true'}">
+                    <div class="alert alert-success">
+                        <strong>Published!</strong> The news article has been added successfully.
                     </div>
-                </div>
+                </c:if>
+                <c:if test="${param.error == 'true'}">
+                    <div class="alert alert-error">
+                        <strong>Error!</strong> There was a problem saving the article. Please try again.
+                    </div>
+                </c:if>
 
+                <form action="${pageContext.request.contextPath}/addNews" method="post" enctype="multipart/form-data">
+                    <div class="flex-container">
+                        <div class="form-row full">
+                            <label>News Title</label>
+                            <input type="text" name="Title" value="${title}" placeholder="e.g. Our New Summer Collection Has Arrived">
+                            <c:if test="${errors.title != null}">
+                                <small class="error">${errors.title}</small>
+                            </c:if>
+                        </div>
+
+                        <div class="form-row full">
+                            <label>News Content</label>
+                            <textarea name="Content" class="news-content" placeholder="Write the full article here...">${content}</textarea>
+                            <c:if test="${errors.content != null}">
+                                <small class="error">${errors.content}</small>
+                            </c:if>
+                        </div>
+
+                        <div class="form-row full">
+                            <label>News Image</label>
+                            <c:if test="${errors.image != null}">
+                                <small class="error">${errors.image}</small>
+                            </c:if>
+                            <div class="image-upload-box">
+                                <div class="image-preview">
+                                    <i id="newsPlaceholder">&#128247;</i>
+                                    <img id="newsPreview" src="#" alt="Preview Image">
+                                </div>
+                                <label class="image-upload-btn">
+                                    Choose Image
+                                    <input type="file" name="Image_Path" accept="image/*" onchange="previewNewsImage()">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btns">
+                        <button type="submit" class="btn-primary">Publish</button>
+                        <button type="reset" class="btn-secondary">Clear Fields</button>
+                    </div>
+                </form>
             </div>
-
-            <div class="btns">
-                <button type="submit" class="btn-primary">Publish</button>
-                <button type="reset"  class="btn-secondary">Clear Fields</button>
-            </div>
-
-        </form>
-
-    </div>
+        </main>
     </div>
 
-</div>
-<script>
-function previewNewsImage() {
-    var fileInput = document.querySelector('input[name="Image_Path"]');
-    var preview   = document.getElementById('newsPreview');
-    var placeholder = document.getElementById('newsPlaceholder');
+    <script>
+    function previewNewsImage() {
+        var fileInput = document.querySelector('input[name="Image_Path"]');
+        var preview = document.getElementById('newsPreview');
+        var placeholder = document.getElementById('newsPlaceholder');
+        var file = fileInput.files[0];
 
-    var file = fileInput.files[0];
-    if (file) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-            placeholder.style.display = 'none';
-        };
-        reader.readAsDataURL(file);
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                placeholder.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
     }
-}
-</script>
-
+    </script>
 </body>
 </html>
