@@ -55,25 +55,25 @@
             </div>
         </div>
 
-        <!-- CARDS -->
+        <!-- LIVE STAT CARDS -->
         <div class="cards">
+
             <div class="card">
-                <p>Today's Revenue</p>
-                <h3>$4,820.50</h3>
+                <p>Total Products</p>
+                <h3>${stats.totalProducts}</h3>
             </div>
 
             <div class="card">
-                <p>Oven Schedule</p>
-                <h3>Batch #42</h3>
-                <span>Macarons: 12m left</span>
+                <p>Registered Customers</p>
+                <h3>${stats.totalCustomers}</h3>
             </div>
 
             <div class="card">
-                <p>Active Deliveries</p>
-                <h3>8 Drivers</h3>
-                <span>4 Out / 4 Idle</span>
+                <p>Total Enquiries</p>
+                <h3>${stats.totalEnquiries}</h3>
             </div>
         </div>
+
 
 		<!-- USER MANAGEMENT SECTION -->
 		<div class="section">
@@ -119,20 +119,6 @@
 		        </tbody>
 		    </table>
 		</div>
-        <!-- MENU & INVENTORY -->
-        <div class="section">
-            <h3>Menu & Inventory</h3>
-
-            <div class="item">
-                <p>Blueberry Cheesecake (Stock: 420)</p>
-                <div class="bar"><div class="fill green" style="width: 85%;"></div></div>
-            </div>
-
-            <div class="item">
-                <p>Classic Croissant (Stock: 15)</p>
-                <div class="bar"><div class="fill orange" style="width: 20%;"></div></div>
-            </div>
-        </div>
 
     </div>
 </div>

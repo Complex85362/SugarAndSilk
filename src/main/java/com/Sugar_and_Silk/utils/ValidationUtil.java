@@ -48,4 +48,19 @@ public class ValidationUtil {
             return false;
         }
     }
+    
+    public static boolean isValidRating(int rating) {
+        return rating >= 1 && rating <= 5;
+    }
+
+    public static boolean isValidComment(String comment) {
+
+        if (comment == null) {
+            return false;
+        }
+
+        comment = comment.trim();
+
+        return !comment.isEmpty() && comment.length() <= 500;
+    }
 }
