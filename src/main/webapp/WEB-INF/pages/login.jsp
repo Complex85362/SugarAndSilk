@@ -37,7 +37,7 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" placeholder="Enter your Password" required>
                     </div>
-                    <c:if test="${not empty errorMesssage}">
+                    <c:if test="${not empty errorMessage}">
 					    <p style="color: red;">${errorMessage}</p>
 					</c:if>
                     <button type="submit" class="login-btn">Login</button>
