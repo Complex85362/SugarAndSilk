@@ -29,7 +29,7 @@
             <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
         </ul>
 
-        <button class="logout">LOGOUT</button>
+        <a href="${pageContext.request.contextPath}/logout" class="logout">LOGOUT</a>
     </div>
 
     <!-- MAIN CONTENT -->

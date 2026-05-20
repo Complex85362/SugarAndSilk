@@ -91,7 +91,7 @@
             <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
         </ul>
         <a href="${pageContext.request.contextPath}/logout">
-            <button class="logout">LOGOUT</button>
+            <a href="${pageContext.request.contextPath}/logout" class="logout">LOGOUT</a>
         </a>
     </div>
 

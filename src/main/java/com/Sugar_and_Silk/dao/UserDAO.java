@@ -167,4 +167,31 @@ public boolean checkEmailExists(String email) throws Exception {
     }
     return exists;
 }
+public boolean updateProfile(int userId, String firstName, String lastName,
+        String address, String profileImage) throws Exception {
+// Build SQL dynamically — only update profileImage column if a new one was uploaded
+String sql;
+if (profileImage != null) {
+sql = "UPDATE user SET Firstname = ?, Lastname = ?, Address = ?, Profile_Image = ? WHERE User_ID = ?";
+} else {
+sql = "UPDATE user SET Firstname = ?, Lastname = ?, Address = ? WHERE User_ID = ?";
+}
+
+try (Connection con = DBconfig.getConnection();
+PreparedStatement pst = con.prepareStatement(sql)) {
+
+pst.setString(1, firstName);
+pst.setString(2, lastName);
+pst.setString(3, address);
+
+if (profileImage != null) {
+pst.setString(4, profileImage);
+pst.setInt(5, userId);
+} else {
+pst.setInt(4, userId);
+}
+
+return pst.executeUpdate() > 0;
+}
+}
 }

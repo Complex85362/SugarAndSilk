@@ -63,7 +63,10 @@ body {
 }
 
 .logout {
-    width: 200px;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 30px;   
+    width: 100%;
     padding: 12px;
     border: 1px solid #fce4ec;
     background: white;
@@ -72,7 +75,6 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
-    margin-top:30px;
 }
 
 .logout:hover {
