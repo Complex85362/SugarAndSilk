@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdetail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productdetail.css?v=2.5">
 </head>
 <body>
 
@@ -46,26 +46,20 @@
 			
 			    <p class="stock-available">In Stock — ${product.stockQuantity} available</p>
 			
-			    <div class="cart-actions">
-			        <div class="qty-selector">
-			            <input type="number"
-			                   name="quantity"
-			                   value="1"
-			                   min="1"
-			                   max="${product.stockQuantity}"
-			                   class="qty-input"
-			                   form="addToCartForm">
-			        </div>
+			   <div class="cart-actions">
+                    <form id="addToCartForm" action="${pageContext.request.contextPath}/cart" method="post" class="cart-form-inline">
 			
-			        <form id="addToCartForm"
-			              action="${pageContext.request.contextPath}/cart"
-			              method="post">
+                        <input type="hidden" name="productId" value="${product.productId}">
+                        <input type="hidden" name="productName" value="${product.productName}">
+                        <input type="hidden" name="productPrice" value="${product.productPrice}">
 			
-			            <input type="hidden" name="productId" value="${product.productId}">
-			            <input type="hidden" name="productName" value="${product.productName}">
-			            <input type="hidden" name="productPrice" value="${product.productPrice}">
+                        <div class="qty-selector">
+                            <button type="button" class="qty-btn minus" onclick="decrementQty()">-</button>
+                            <input type="number" id="detailQty" name="quantity" value="1" min="1" max="${product.stockQuantity}" class="qty-input" readonly>
+                            <button type="button" class="qty-btn plus" onclick="incrementQty()">+</button>
+                        </div>
 			
-			            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
 			
 			        </form>
 			    </div>
@@ -165,6 +159,23 @@
     </main>
 
     <%@ include file="footer.jsp" %>
+	 <script>
+        function incrementQty() {
+            const input = document.getElementById('detailQty');
+            const max = parseInt(input.getAttribute('max')) || 999;
+            let val = parseInt(input.value) || 1;
+            if (val < max) {
+                input.value = val + 1;
+            }
+        }
 
+        function decrementQty() {
+            const input = document.getElementById('detailQty');
+            let val = parseInt(input.value) || 1;
+            if (val > 1) {
+                input.value = val - 1;
+            }
+        }
+    </script>
 </body>
 </html>

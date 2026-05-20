@@ -1,22 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
-      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
-      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product.css">
-    <title>Document</title>
-
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product.css">
+    <title>Sugar &amp; Silk | Products</title>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
-	<main class="product-collection">
+    <%@ include file="header.jsp" %>
 
-        <%-- Hero banner at the top of the product page --%>
+    <main class="product-collection">
+
         <section class="product-hero">
             <img src="${pageContext.request.contextPath}/images/product_banner.jpg"
                  alt="Sugar and Silk Bakery Display">
@@ -29,30 +27,37 @@
             </p>
         </header>
 
-        <%-- If the servlet could not load products, show a message --%>
         <c:if test="${not empty errorMessage}">
             <p class="error-msg">${errorMessage}</p>
         </c:if>
 
-        <%-- If the product list is empty (no error but nothing in DB) --%>
         <c:if test="${empty productList and empty errorMessage}">
             <p class="error-msg">No products are available at the moment. Please check back soon.</p>
         </c:if>
 
-        <%-- Dynamic product grid --%>
         <div class="product-grid">
             <c:forEach var="item" items="${productList}">
                 <div class="product-card">
 
                     
-                    <a href="${pageContext.request.contextPath}/detail?id=${item.productId}"
+                    <%-- Image links to the detail page --%>
+                    <a href="${pageContext.request.contextPath}/detail?productId=${item.productId}"
                        class="card-image-link">
                         <div class="image-container">
                             <img src="${pageContext.request.contextPath}/images/${item.productImage}"
                                  alt="${item.productName}">
-                            <span class="add-btn">Add to cart</span>
                         </div>
                     </a>
+
+                    <%-- Add to Cart form sits OUTSIDE the <a> so the submit works --%>
+                    <form action="${pageContext.request.contextPath}/cart"
+                          method="post"
+                          class="card-cart-form">
+                        <input type="hidden" name="productId" value="${item.productId}">
+                        <input type="hidden" name="quantity"  value="1">
+                        <button type="submit" class="add-btn">Add to Cart</button>
+                    </form>
+
 
                     <div class="product-details">
                         <a href="${pageContext.request.contextPath}/detail?productId=${item.productId}">
@@ -69,8 +74,6 @@
 
     </main>
 
-	
-	
-	<%@ include file="footer.jsp" %>
+    <%@ include file="footer.jsp" %>
 </body>
 </html>

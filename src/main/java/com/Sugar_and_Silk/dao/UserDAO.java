@@ -119,13 +119,14 @@ public UserModel getUserByEmail(String email) throws Exception {
     if (rs.next()) {
         user = new UserModel();
         user.setUserId(rs.getInt("User_ID"));
-        user.setFirstName(rs.getString("FirstName"));
-        user.setLastName(rs.getString("LastName"));
+        user.setFirstName(rs.getString("Firstname"));
+        user.setLastName(rs.getString("Lastname"));
         user.setUsername(rs.getString("Username"));
         user.setEmail(rs.getString("Email"));
         user.setPassword(rs.getString("Password")); // The hashed password
         user.setUserRole(rs.getString("User_Role"));
         user.setProfileImage(rs.getString("Profile_Image"));
+        user.setActive(rs.getInt("is_active"));
     }
 
     rs.close();
@@ -133,5 +134,37 @@ public UserModel getUserByEmail(String email) throws Exception {
     con.close();
     return user;
 }
+public boolean checkUsernameExists(String username) throws Exception {
+    boolean exists = false;
+    String sql = "SELECT COUNT(*) FROM user WHERE Username = ?";
+    
+    try (Connection con = DBconfig.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+        
+        pst.setString(1, username);
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next() && rs.getInt(1) > 0) {
+                exists = true;
+            }
+        }
+    }
+    return exists;
+}
 
+public boolean checkEmailExists(String email) throws Exception {
+    boolean exists = false;
+    String sql = "SELECT COUNT(*) FROM user WHERE Email = ?";
+    
+    try (Connection con = DBconfig.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+        
+        pst.setString(1, email);
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next() && rs.getInt(1) > 0) {
+                exists = true;
+            }
+        }
+    }
+    return exists;
+}
 }
