@@ -127,6 +127,7 @@ public UserModel getUserByEmail(String email) throws Exception {
         user.setUserRole(rs.getString("User_Role"));
         user.setProfileImage(rs.getString("Profile_Image"));
         user.setActive(rs.getInt("is_active"));
+        user.setAddress(rs.getString("Address"));
     }
 
     rs.close();

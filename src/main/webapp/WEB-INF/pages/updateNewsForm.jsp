@@ -1,6 +1,6 @@
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -162,5 +162,20 @@
         </div>
     </div>
 </div>
+<script>
+    function previewNewsImage() {
+        var file = document.querySelector('input[name="Image_Path"]').files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var preview = document.getElementById('upPreview');
+            var placeholder = document.getElementById('upImgPlaceholder');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
 </body>
 </html>

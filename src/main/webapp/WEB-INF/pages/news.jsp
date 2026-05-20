@@ -9,7 +9,7 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
-    <title>Document</title>
+    <title>News</title>
     
 </head>
 <body>

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/newsdescription.css">
-<title>Insert title here</title>
+<title>News Description</title>
 </head>
 <body>
 <%@ include file="header.jsp" %>
