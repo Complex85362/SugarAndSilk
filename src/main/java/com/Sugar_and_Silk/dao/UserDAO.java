@@ -67,7 +67,7 @@ public boolean insertUser(String firstname, String lastname, String username,
 		boolean isSuccess = false;
 		
 		String sql = "INSERT INTO user (Firstname, Lastname, Username, Gender, Address, Email, Password, Profile_Image, is_active, User_Role) "
-		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, 'customer')";
+		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 'customer')";
 		
 		PreparedStatement pst = con.prepareStatement(sql);
 		pst.setString(1, firstname);

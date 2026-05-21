@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sugar & Silk | Login</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         .image {
@@ -16,7 +17,7 @@
     </style>
 </head>
 <body>
-
+	<%@ include file="header.jsp" %>
     <div class="container">
         <div class="image"></div>
 
@@ -39,6 +40,9 @@
                     </div>
                     <c:if test="${not empty errorMessage}">
 					    <p style="color: red;">${errorMessage}</p>
+					</c:if>
+					<c:if test="${not empty inactiveMessage}">
+				    <p style="color: orange;">${inactiveMessage}</p>
 					</c:if>
                     <button type="submit" class="login-btn">Login</button>
                     <div class="form-link">

@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                 UserModel userData = dao.getUserByEmail(email);
                 
                 if (userData != null && userData.getActive() == 0) {
-                    request.setAttribute("showInactiveModal", "true"); 
+                	request.setAttribute("inactiveMessage", "Your account is inactive. Please contact the admin for activation.");
                     request.setAttribute("typedEmail", email); 
                     request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
                     return; 
