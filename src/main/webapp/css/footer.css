@@ -39,7 +39,7 @@
     color: var(--pink);
 }
 
-/* --- Social Icon Styling --- */
+/* Social Icon Styling*/
 .social-icons {
     display: grid;
     grid-template-columns: repeat(2, auto); /* 2 columns */

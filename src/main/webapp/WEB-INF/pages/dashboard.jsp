@@ -1,6 +1,6 @@
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,21 +15,21 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <div class="logo">S&S <span>Sugar & Silk</span></div>
+        <div class="logo">
+        <a href="${pageContext.request.contextPath}/home" class="logo-link">
+        S&S <span>Sugar & Silk</span>
+        </a></div>
 
         <ul>
             <li class="active"><a href="${pageContext.request.contextPath}/dashboard" style="color: inherit;">Command Center</a></li>
-            <li>Orders & Sales</li>
-
             <li><a href="${pageContext.request.contextPath}/addProduct">Add Product</a></li>
-            <li><a href="${pageContext.request.contextPath}/updateProduct">Update Menu</a></li>
-
-            <li>Users</li>
-            <li>Inbox</li>
-            <li>Delivery Map</li>
+            <li><a href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/addNews">Add News</a></li>
+            <li><a href="${pageContext.request.contextPath}/newsManagement">News Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/enquiryManagement">Enquiries</a></li>
         </ul>
 
-        <button class="logout">LOGOUT</button>
+        <a href="${pageContext.request.contextPath}/logout" class="logout">LOGOUT</a>
     </div>
 
     <!-- MAIN CONTENT -->
@@ -39,31 +39,41 @@
         <div class="topbar">
             <h2>Command Center</h2>
 
-            <form action="${pageContext.request.contextPath}/dashboard" method="get" class="search-container">
-                <input type="number" name="searchId" placeholder="Enter User ID (e.g. 101)" value="${param.searchId}" min="1" step="1" required>
-                <button type="submit" class="search-btn">Search</button>
-            </form>
+            <div class="search-area">
+                <!-- Search by ID -->
+                <form action="${pageContext.request.contextPath}/dashboard" method="get" class="search-container">
+                    <input type="number" name="searchId" placeholder="Enter User ID (e.g. 101)" value="${param.searchId}" min="1" step="1">
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+
+                <%-- Show "Show All" only when a search is currently active --%>
+                <c:if test="${not empty param.searchId}">
+                    <a href="${pageContext.request.contextPath}/dashboard" class="show-all-btn">
+                        Show All
+                    </a>
+                </c:if>
+            </div>
         </div>
 
-        <!-- CARDS -->
+        <!-- LIVE STAT CARDS -->
         <div class="cards">
+
             <div class="card">
-                <p>Today's Revenue</p>
-                <h3>$4,820.50</h3>
+                <p>Total Products</p>
+                <h3>${stats.totalProducts}</h3>
             </div>
 
             <div class="card">
-                <p>Oven Schedule</p>
-                <h3>Batch #42</h3>
-                <span>Macarons: 12m left</span>
+                <p>Registered Customers</p>
+                <h3>${stats.totalCustomers}</h3>
             </div>
 
             <div class="card">
-                <p>Active Deliveries</p>
-                <h3>8 Drivers</h3>
-                <span>4 Out / 4 Idle</span>
+                <p>Total Enquiries</p>
+                <h3>${stats.totalEnquiries}</h3>
             </div>
         </div>
+
 
 		<!-- USER MANAGEMENT SECTION -->
 		<div class="section">
@@ -109,20 +119,6 @@
 		        </tbody>
 		    </table>
 		</div>
-        <!-- MENU & INVENTORY -->
-        <div class="section">
-            <h3>Menu & Inventory</h3>
-
-            <div class="item">
-                <p>Blueberry Cheesecake (Stock: 420)</p>
-                <div class="bar"><div class="fill green" style="width: 85%;"></div></div>
-            </div>
-
-            <div class="item">
-                <p>Classic Croissant (Stock: 15)</p>
-                <div class="bar"><div class="fill orange" style="width: 20%;"></div></div>
-            </div>
-        </div>
 
     </div>
 </div>

@@ -40,6 +40,35 @@ public class ProductDAO {
 	    return productList;
 	}
 	
+	
+	public ProductModel getProductById(int productId) throws SQLException {
+        String query = "SELECT * FROM product WHERE Product_ID = ?";
+ 
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+ 
+            ps.setInt(1, productId);
+ 
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    ProductModel product = new ProductModel();
+                    product.setProductId(rs.getInt("Product_ID"));
+                    product.setCategoryId(rs.getInt("Category_id"));
+                    product.setProductName(rs.getString("Product_Name"));
+                    product.setProductDescription(rs.getString("Product_description"));
+                    product.setProductPrice(rs.getDouble("Product_price"));
+                    product.setStockQuantity(rs.getInt("Stock_quantity"));
+                    product.setProductCreationDate(rs.getTimestamp("Product_creation_date"));
+                    product.setProductImage(rs.getString("Product_Image"));
+                    return product;
+                }
+            }
+        }
+ 
+        return null; // not found
+    }
+	
+	
 	public int insertProduct(AddProductModel product) throws SQLException {
         String query = "INSERT INTO product (Category_id, Product_Name, Product_description, "
                      + "Product_price, Stock_quantity, Product_Image) VALUES (?, ?, ?, ?, ?, ?)";
@@ -74,22 +103,33 @@ public class ProductDAO {
 	}
 	
 	public int updateProduct(UpdateProductModel product) throws SQLException {
-	    String sql = "UPDATE product SET Category_id = ?, Product_Name = ?, Product_description = ?, "
-	               + "Product_price = ?, Stock_quantity = ? WHERE Product_ID = ?";
-	    
-	    try (Connection conn = DBconfig.getConnection(); 
-	         PreparedStatement ps = conn.prepareStatement(sql)) {
-	        
-	        ps.setInt(1, product.getCategoryId());
-	        ps.setString(2, product.getProductName());
-	        ps.setString(3, product.getProductDescription());
-	        ps.setDouble(4, product.getProductPrice());
-	        ps.setInt(5, product.getStockQuantity());
-	        ps.setInt(6, product.getProductId()); 
-	        
-	        return ps.executeUpdate();
-	    }
+		String sql;
+        if (product.getProductImage() != null) {
+            sql = "UPDATE product SET Category_id = ?, Product_Name = ?, Product_description = ?, "
+                + "Product_price = ?, Stock_quantity = ?, Product_Image = ? WHERE Product_ID = ?";
+        } else {
+            sql = "UPDATE product SET Category_id = ?, Product_Name = ?, Product_description = ?, "
+                + "Product_price = ?, Stock_quantity = ? WHERE Product_ID = ?";
+        }
+ 
+        try (Connection conn = DBconfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+ 
+            ps.setInt(1, product.getCategoryId());
+            ps.setString(2, product.getProductName());
+            ps.setString(3, product.getProductDescription());
+            ps.setDouble(4, product.getProductPrice());
+            ps.setInt(5, product.getStockQuantity());
+ 
+            if (product.getProductImage() != null) {
+                ps.setString(6, product.getProductImage());
+                ps.setInt(7, product.getProductId());
+            } else {
+                ps.setInt(6, product.getProductId());
+            }
+ 
+            return ps.executeUpdate();
 	}
 	
-	
+	}
 }

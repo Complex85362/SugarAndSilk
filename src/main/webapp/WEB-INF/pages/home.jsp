@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
-    <title>Document</title>
+    <title>Home</title>
 </head>
 <body>
     <nav>
@@ -20,7 +20,7 @@
             </div>
             <div class="nav-links">
             <a href="${pageContext.request.contextPath}/product"  style="color: var(--white)">E-Shop</a>
-            <a href="${pageContext.request.contextPath}/locations"  style="color: var(--white)">Our Stores</a>
+            <a href="${pageContext.request.contextPath}/location"  style="color: var(--white)">Our Stores</a>
             <a href="${pageContext.request.contextPath}/aboutus"  style="color: var(--white)">About Us</a>
             <a href="${pageContext.request.contextPath}/news"  style="color: var(--white)">News</a>
             </div>
@@ -56,34 +56,34 @@
             <div class="grid-card">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-andreea-07-2155708476-33863191.jpg" alt="Pastry">
-                        <button class="add-to-cart">Add to Cart</button>
+                        
                     </div>
                     <h3>Classic Macarons</h3>
-                    <p>$12.00</p>
+                    <p>Rs. 1,200</p>
             </div>
             <div class="grid-card">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-amanda-hemphill-2407528-7440405.jpg" alt="Pastry">
-                        <button class="add-to-cart">Add to Cart</button>
+                       
                     </div>
                     <h3>Almond Croissant</h3>
-                    <p>$6.00</p>
+                    <p>Rs.600</p>
             </div>
             <div class="grid-card">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-avonnephoto-6392782.jpg" alt="Pastry">
-                        <button class="add-to-cart">Add to Cart</button>
+                        
                     </div>
                     <h3>Berry Tartlet</h3>
-                    <p>$8.50</p>
+                    <p>Rs.850</p>
             </div>
             <div class="grid-card">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-manish-jain-1176829519-30846578.jpg" alt="Pastry">
-                        <button class="add-to-cart">Add to Cart</button>
+                        
                     </div>
                     <h3>Chocolate Éclair</h3>
-                    <p>$7.00</p>
+                    <p>Rs.700</p>
             </div>
         </div>
         <div class="all-products">
@@ -108,7 +108,7 @@
                 <h2>About Us</h2>
                 <p>At Sugar & Silk, we craft each creation with care, blending timeless techniques with refined flavors. Every pastry is designed to be both elegant and indulgent, offering a moment of quiet luxury in every bite.
                     From delicate confections to rich, decadent desserts, every piece is designed to offer a moment of elegance and comfort.  </p>
-                <a href="${pageContext.request.contextPath}/aboutus"><button class="btn btn-primary">Learn More</button></a>
+                <a href="${pageContext.request.contextPath}/aboutus"><button class="btn btn-primary" style="border: 2px solid var(--pink);">Learn More</button></a>
             </div>
         </div>
     </section>
@@ -122,44 +122,44 @@
         </div>
         <div class="grid-container"> 
             <div class="grid-card">
-            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
+            	<a href="${pageContext.request.contextPath}/news" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-mdsnmdsnmdsn-192933.jpg" alt="Pastry">
                     </div>
-                    <h3>News Titile goes here</h3>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit”</p>
+                    <h3>Grand Reopening</h3>
+                    <p>“Join us this Saturday as we unveil our newly renovated bakery”</p>
                 </a>
             </div>
             <div class="grid-card">
-            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
+            	<a href="${pageContext.request.contextPath}/news" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-yasin-onus-520099596-36445004.jpg" alt="Pastry">
                     </div>
-                    <h3>News Titile goes here</h3>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit”</p>
+                    <h3>Summer Baking Workshop</h3>
+                    <p>Registration is now open for our weekend pastry masterclass.</p>
                  </a>
             </div>
             <div class="grid-card">
-            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
+            	<a href="${pageContext.request.contextPath}/news" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-calvinseng-31688651.jpg" alt="Pastry">
                     </div>
-                    <h3>News Titile goes here</h3>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit”</p>
+                    <h3>Holiday Hours Announcemen</h3>
+                    <p>Please note that our storefront will be closing early at 2:00 PM</p>
                 </a>
             </div>
             <div class="grid-card">
-            	<a href="${pageContext.request.contextPath}/newspage" class="news-link">
+            	<a href="${pageContext.request.contextPath}/news" class="news-link">
                     <div class="img-wrapper">
                         <img src="${pageContext.request.contextPath}/images/pexels-yasin-onus-520099596-36445126.jpg" alt="Pastry">
                     </div>
-                    <h3>News Titile goes here</h3>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit”</p>
+                    <h3>New Loyalty Rewards</h3>
+                    <p>Earn points with every purchase! </p>
                  </a>
             </div>
         </div>
         <div class="all-products">
-            <a href="${pageContext.request.contextPath}/news"><button class="btn btn-primary">View More</button></a>
+            <a href="${pageContext.request.contextPath}/news"><button class="btn btn-primary" style="border: 2px solid var(--pink);">View More</button></a>
         </div>   
         </div>
     </section>

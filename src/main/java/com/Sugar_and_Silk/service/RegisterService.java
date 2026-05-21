@@ -31,18 +31,18 @@ public class RegisterService {
         
         if (imagePart != null && imagePart.getSize() > 0 ) {
         	if (FileUploadUtil.isImage(imagePart)) {
-                // Get the extension (e.g., .jpg, .png)
+               
                 String extension = FileUploadUtil.getFileExtension(imagePart.getSubmittedFileName());
                 
                 // Name the file after the username
                 fileName = username + extension;
                 
-                // Save it to the physical device folder
+         
                 FileUploadUtil.saveFile(imagePart, uploadDir, fileName);
             }
         }
 
-        // Send the prepared data to the DAO
+        // Send the data to the DAO
         return dao.insertUser(firstname, lastname, username, gender, address, email, hashedPassword, fileName);
     }
 }

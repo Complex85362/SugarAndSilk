@@ -8,7 +8,7 @@
     --softpink: #FFC8DD;
 }
 
-/* --- Global Styles --- */
+/*  Global Styles  */
 * {
     margin: 0;
     padding: 0;
@@ -24,8 +24,7 @@ body{
  	padding-left: 120px;
  	padding-bottom:80px;
     
-    display: flex;
-    align-items: center;
+    
 }
 
 .news-content-wrapper {
@@ -67,3 +66,4 @@ body{
     box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
     object-fit: cover;
 }
+

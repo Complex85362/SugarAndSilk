@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aboutus.css">
  
-    <title>Document</title>
+    <title>About Us</title>
 </head>
 <body>
 	<%@ include file="header.jsp" %>
@@ -69,7 +69,7 @@
         
         <!-- Team Card -->
         <div class="team-card">
-            <img src="${pageContext.request.contextPath}/images/profile_placeholder.png" alt="Suvham Shakya">
+            <img src="${pageContext.request.contextPath}/images/SuvhamShakyaphoto.PNG" alt="Suvham Shakya">
             <div class="team-info">
                 <h3>Suvham Shakya</h3>
                 <p class="role">CEO (Leader) - 24046920</p>
@@ -80,21 +80,21 @@
 
        
         <div class="team-card">
-            <img src="${pageContext.request.contextPath}/images/profile_placeholder.png" alt="Suvham Shakya">
+            <img src="${pageContext.request.contextPath}/images/Shashreekphoto.PNG" alt="Suvham Shakya">
             <div class="team-info">
                 <h3>Shashreek Shrestha</h3>
                 <p class="role">Manager - 24046882</p>
                 <br><br>
-                <p>Hobbies: Footbal<br> UI Design<br> Travelling</p>
+                <p>Hobbies: <br>Football<br> UI Design<br> Travelling</p>
             </div>
         </div>
 
   
         <div class="team-card">
-            <img src="${pageContext.request.contextPath}/images/profile_placeholder.png" alt="Suvham Shakya">
+            <img src="${pageContext.request.contextPath}/images/tammanaPhoto.PNG" alt="Suvham Shakya">
             <div class="team-info">
                 <h3>Tamanna Aryal</h3>
-                <p class="role">CEO (Leader) -  24046929</p>
+                <p class="role">CFO (Leader) -  24046929</p>
                 <br>
                 <p>Hobbies:<br> Skateboarding<br> UI Design<br> Gaming</p>
             </div>

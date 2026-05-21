@@ -67,7 +67,7 @@ public boolean insertUser(String firstname, String lastname, String username,
 		boolean isSuccess = false;
 		
 		String sql = "INSERT INTO user (Firstname, Lastname, Username, Gender, Address, Email, Password, Profile_Image, is_active, User_Role) "
-		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, 'customer')";
+		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 'customer')";
 		
 		PreparedStatement pst = con.prepareStatement(sql);
 		pst.setString(1, firstname);
@@ -119,13 +119,15 @@ public UserModel getUserByEmail(String email) throws Exception {
     if (rs.next()) {
         user = new UserModel();
         user.setUserId(rs.getInt("User_ID"));
-        user.setFirstName(rs.getString("FirstName"));
-        user.setLastName(rs.getString("LastName"));
+        user.setFirstName(rs.getString("Firstname"));
+        user.setLastName(rs.getString("Lastname"));
         user.setUsername(rs.getString("Username"));
         user.setEmail(rs.getString("Email"));
         user.setPassword(rs.getString("Password")); // The hashed password
         user.setUserRole(rs.getString("User_Role"));
         user.setProfileImage(rs.getString("Profile_Image"));
+        user.setActive(rs.getInt("is_active"));
+        user.setAddress(rs.getString("Address"));
     }
 
     rs.close();
@@ -133,5 +135,64 @@ public UserModel getUserByEmail(String email) throws Exception {
     con.close();
     return user;
 }
+public boolean checkUsernameExists(String username) throws Exception {
+    boolean exists = false;
+    String sql = "SELECT COUNT(*) FROM user WHERE Username = ?";
+    
+    try (Connection con = DBconfig.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+        
+        pst.setString(1, username);
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next() && rs.getInt(1) > 0) {
+                exists = true;
+            }
+        }
+    }
+    return exists;
+}
 
+public boolean checkEmailExists(String email) throws Exception {
+    boolean exists = false;
+    String sql = "SELECT COUNT(*) FROM user WHERE Email = ?";
+    
+    try (Connection con = DBconfig.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+        
+        pst.setString(1, email);
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next() && rs.getInt(1) > 0) {
+                exists = true;
+            }
+        }
+    }
+    return exists;
+}
+public boolean updateProfile(int userId, String firstName, String lastName,
+        String address, String profileImage) throws Exception {
+// Build SQL dynamically
+String sql;
+if (profileImage != null) {
+sql = "UPDATE user SET Firstname = ?, Lastname = ?, Address = ?, Profile_Image = ? WHERE User_ID = ?";
+} else {
+sql = "UPDATE user SET Firstname = ?, Lastname = ?, Address = ? WHERE User_ID = ?";
+}
+
+try (Connection con = DBconfig.getConnection();
+PreparedStatement pst = con.prepareStatement(sql)) {
+
+pst.setString(1, firstName);
+pst.setString(2, lastName);
+pst.setString(3, address);
+
+if (profileImage != null) {
+pst.setString(4, profileImage);
+pst.setInt(5, userId);
+} else {
+pst.setInt(4, userId);
+}
+
+return pst.executeUpdate() > 0;
+}
+}
 }

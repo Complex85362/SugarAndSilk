@@ -4,7 +4,7 @@
     --black: #1F1A17;
     --gold: #C2A46F;
     --pink: #FF74A6;
-    --blue: #A2D2FF;
+    --blue: #C2A46F;
     --white: #FFF8F3;
 }
 
@@ -104,9 +104,12 @@ h2{
 }
 
 .team-card img {
-    width: 500px;
-    height: auto;
+    width: 350px;
+    height: 350px;
+    min-width: 350px;     
     border-radius: 50%;
+    object-fit: cover;
+    object-position: top;  
     margin-right: 30px;
 }
 

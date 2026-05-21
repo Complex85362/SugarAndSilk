@@ -1,15 +1,15 @@
 @charset "UTF-8";
-/* --- Variables --- */
+/*  Variables  */
 :root {
     --black: #1F1A17;
     --gold: #C2A46F;
     --pink: #FF74A6;
-    --blue: #A2D2FF;
+    --blue: #C2A46F;
     --white: #FFF8F3;
     --softpink: #FFC8DD;
 }
 
-/* --- Global Styles --- */
+/*  Global Styles*/
 * {
     margin: 0;
     padding: 0;
@@ -45,7 +45,7 @@ body{
     font-size: 40px;
 }
 
-/* --- Contact Form Card --- */
+/*  Contact Form Card  */
 .contact-section {
     padding: 60px 0;
     display: flex;
@@ -70,7 +70,7 @@ body{
     font-weight: 400;
 }
 
-/* --- Form Elements --- */
+/*Form Elements*/
 .form-row {
     display: flex;
     gap: 20px;
@@ -104,7 +104,7 @@ textarea {
     border-color: var(--blue);
 }
 
-/* --- Submit Button --- */
+
 .form-submit {
     display: flex;
     justify-content: center;
@@ -128,3 +128,24 @@ textarea {
     background-color: var(--blue);
     opacity: 1;
 }
+
+.alert {
+    max-width: 700px;
+    margin: 20px auto 0;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+.alert-success {
+    background: #e8f5e9;
+    color: #1b5e20;
+    border-left: 4px solid #43a047;
+}
+.alert-error {
+    background: #fdecea;
+    color: #b71c1c;
+    border-left: 4px solid #e53935;
+}
+ 

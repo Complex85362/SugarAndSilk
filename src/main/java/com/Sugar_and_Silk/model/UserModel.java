@@ -10,7 +10,8 @@ public class UserModel {
     private String email;
     private String userRole;
     private int active;
-    
+    private String address;     
+    private String phoneNumber; 
     public int getUserId() { 
     	return userId; 
     	}
@@ -65,6 +66,27 @@ public class UserModel {
     public void setProfileImage(String profileImage) { 
     	this.profileImage = profileImage;
     	}
+
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
     
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
+
+    public String getStatus() {
+        return null;
+    }
+    public void setStatus(String status) {
+        
+    }
 }
     

@@ -10,12 +10,15 @@ import jakarta.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.Sugar_and_Silk.dao.ProductDAO;
 import com.Sugar_and_Silk.model.AddProductModel;
 import com.Sugar_and_Silk.service.InventoryService;
 import com.Sugar_and_Silk.utils.FileUploadUtil;
 import com.Sugar_and_Silk.utils.SessionUtil;
+import com.Sugar_and_Silk.utils.ValidationUtil;
 
 /**
  * Servlet implementation class AddProductServlet
@@ -28,7 +31,6 @@ import com.Sugar_and_Silk.utils.SessionUtil;
 	)
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIR = System.getProperty("user.home") + File.separator + "webapp_uploads";
 	private ProductDAO productDAO = new ProductDAO();
 	private InventoryService service = new InventoryService();
        
@@ -52,31 +54,74 @@ public class AddProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Map<String, String> errors = new HashMap<>();
+		
 		try{
+		String categoryStr = request.getParameter("Category_id");
+		String name = request.getParameter("Product_Name");
+		String description = request.getParameter("Product_description");
+		String priceStr = request.getParameter("Product_price");
+		String stockStr = request.getParameter("Stock_quantity");
 			
-			
-			
-		int categoryId = Integer.parseInt(request.getParameter("Category_id"));
-        String name = request.getParameter("Product_Name");
-        String description = request.getParameter("Product_description");
-        double price = Double.parseDouble(request.getParameter("Product_price"));
-        int stock = Integer.parseInt(request.getParameter("Stock_quantity"));
-
         Part filePart = request.getPart("Product_Image");
-        String fileName = null;
-
-        if (filePart != null && filePart.getSize() > 0) {
-            if (FileUploadUtil.isImage(filePart)) {
-                // Generate unique name
-                fileName = FileUploadUtil.generateUniqueFileName(name, filePart.getSubmittedFileName());
-                
-                // Save physically to the local folder
-                FileUploadUtil.saveFile(filePart, UPLOAD_DIR, fileName);
-            }
+        if (ValidationUtil.isNullOrEmpty(name)) {
+            errors.put("name", "Product name is required.");
+        } else if (!ValidationUtil.isValidProductName(name)) {
+            errors.put("name", "Invalid product name.");
         }
 
-        // Save to Database using DAO
-        AddProductModel product = new AddProductModel(categoryId, name, description, price, stock, fileName);
+        if (ValidationUtil.isNullOrEmpty(description)) {
+            errors.put("description", "Description is required.");
+        }
+
+        if (ValidationUtil.isNullOrEmpty(categoryStr)) {
+            errors.put("category", "Please select a category.");
+        }
+
+        if (ValidationUtil.isNullOrEmpty(priceStr)) {
+            errors.put("price", "Price is required.");
+        } else if (!ValidationUtil.isPositiveDouble(priceStr)) {
+            errors.put("price", "Price must be greater than 0.");
+        }
+
+        if (ValidationUtil.isNullOrEmpty(stockStr)) {
+            errors.put("stock", "Stock quantity is required.");
+        } else if (!ValidationUtil.isPositiveInteger(stockStr)) {
+            errors.put("stock", "Stock must be 0 or greater.");
+        }
+
+        if (filePart == null || filePart.getSize() == 0) {
+            errors.put("image", "Product image is required.");
+        } else if (!FileUploadUtil.isImage(filePart)) {
+            errors.put("image", "Only image files are allowed.");
+        }
+
+        if (!errors.isEmpty()) {
+
+            request.setAttribute("errors", errors);
+            request.setAttribute("name", name);
+            request.setAttribute("description", description);
+            request.setAttribute("price", priceStr);
+            request.setAttribute("stock", stockStr);
+            request.setAttribute("category", categoryStr);
+
+            request.getRequestDispatcher("WEB-INF/pages/addProduct.jsp").forward(request, response);
+
+            return;
+        }
+
+        int categoryId = Integer.parseInt(categoryStr);
+        double price = Double.parseDouble(priceStr);
+        int stock = Integer.parseInt(stockStr);
+        
+        String uploadDir = getServletContext().getRealPath("/images/");
+        String fileName = FileUploadUtil.generateUniqueFileName(name,filePart.getSubmittedFileName());
+        
+        FileUploadUtil.saveFile(filePart, uploadDir, fileName);
+
+        AddProductModel product = new AddProductModel(categoryId,name,description,price,stock,fileName);
+
         int rowsAffected = productDAO.insertProduct(product);
 
         if (rowsAffected > 0) {
@@ -85,11 +130,11 @@ public class AddProductServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/addProduct?error=true");
         }
 
-		}catch (Exception e) {
+    } catch (Exception e) {
         e.printStackTrace();
-        response.sendRedirect(request.getContextPath() + "/addProduct");
-		}
-	}
+        response.sendRedirect(request.getContextPath() + "/addProduct?error=true");
+    }
+}
 }
 
 
