@@ -59,7 +59,7 @@
                         
                     </div>
                     <h3>Classic Macarons</h3>
-                    <p>$12.00</p>
+                    <p>Rs. 1,200</p>
             </div>
             <div class="grid-card">
                     <div class="img-wrapper">
@@ -67,7 +67,7 @@
                        
                     </div>
                     <h3>Almond Croissant</h3>
-                    <p>$6.00</p>
+                    <p>Rs.600</p>
             </div>
             <div class="grid-card">
                     <div class="img-wrapper">
@@ -75,7 +75,7 @@
                         
                     </div>
                     <h3>Berry Tartlet</h3>
-                    <p>$8.50</p>
+                    <p>Rs.850</p>
             </div>
             <div class="grid-card">
                     <div class="img-wrapper">
@@ -83,7 +83,7 @@
                         
                     </div>
                     <h3>Chocolate Éclair</h3>
-                    <p>$7.00</p>
+                    <p>Rs.700</p>
             </div>
         </div>
         <div class="all-products">

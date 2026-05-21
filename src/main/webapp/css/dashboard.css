@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     margin: 0;
     font-family: 'Inter', Arial, sans-serif;
@@ -11,6 +16,7 @@ body {
 /* SIDEBAR */
 .sidebar {
     background: white;
+    width: 240px;    
     height: 100vh;
     padding: 30px 20px;
     box-shadow: 2px 0 15px rgba(0,0,0,0.03);
@@ -210,6 +216,11 @@ td {
     border-radius: 8px;
     font-size: 12px;
     font-weight: 600;
+}
+.show-all-btn{
+	text-decoration:none;
+	padding-top:10px;
+	color:black;
 }
 
 .btn-activate {
