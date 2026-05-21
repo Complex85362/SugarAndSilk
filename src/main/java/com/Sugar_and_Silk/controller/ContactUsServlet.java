@@ -47,14 +47,14 @@ public class ContactUsServlet extends HttpServlet {
 	        String subject = trim(request.getParameter("subject"));
 	        String message = trim(request.getParameter("message"));
 	 
-	        // --- Basic validation ---
+	        //  Basic validation 
 	        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || message.isEmpty()) {
 	            request.setAttribute("errorMessage", "Please fill in all required fields.");
 	            request.getRequestDispatcher("WEB-INF/pages/contactus.jsp").forward(request, response);
 	            return;
 	        }
 	 
-	        // --- Build model ---
+	        // Build model
 	        EnquiryModel enquiry = new EnquiryModel();
 	        enquiry.setFirstName(firstName);
 	        enquiry.setLastName(lastName);
@@ -63,7 +63,7 @@ public class ContactUsServlet extends HttpServlet {
 	        enquiry.setSubject(subject.isEmpty() ? null : subject);
 	        enquiry.setMessage(message);
 	 
-	        // --- Attach User_ID if logged in ---
+	        //  Attach User_ID if logged in 
 	        HttpSession session = request.getSession(false);
 	        if (session != null && session.getAttribute("userId") != null) {
 	            enquiry.setUserId((Integer) session.getAttribute("userId"));

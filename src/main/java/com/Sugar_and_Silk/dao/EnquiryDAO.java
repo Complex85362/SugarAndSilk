@@ -42,7 +42,7 @@ public class EnquiryDAO {
 	        }
 	    }
 	 
-	    //Retrieve all enquiries (newest first)
+	    //Retrieve all enquiries
 	 
 	    public List<EnquiryModel> getAllEnquiries() {
 	        List<EnquiryModel> list = new ArrayList<>();
@@ -63,14 +63,14 @@ public class EnquiryDAO {
 	        return list;
 	    }
 	 
-	    //Helper: map one ResultSet row → EnquiryModel
+	    //Helper: map one ResultSet row - EnquiryModel
 	 
 	    private EnquiryModel mapRow(ResultSet rs) throws SQLException {
 	        EnquiryModel e = new EnquiryModel();
 	        e.setEnquiryId(rs.getInt("Enquiry_ID"));
 	 
 	        int userId = rs.getInt("User_ID");
-	        e.setUserId(rs.wasNull() ? null : userId);   // keep null for guests
+	        e.setUserId(rs.wasNull() ? null : userId);   
 	 
 	        e.setFirstName(rs.getString("First_Name"));
 	        e.setLastName(rs.getString("Last_Name"));

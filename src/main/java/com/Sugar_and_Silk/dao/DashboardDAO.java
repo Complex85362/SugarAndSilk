@@ -19,7 +19,7 @@ public class DashboardDAO {
         return stats;
     }
  
-    // Helper: execute a single COUNT query and return the integer result 
+    // Helper: COUNT query and return the integer result 
     private int runCount(String sql) {
         try (Connection conn = DBconfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -31,6 +31,6 @@ public class DashboardDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;   // safe fallback — never crashes the page
+        return 0;  
     }
 }

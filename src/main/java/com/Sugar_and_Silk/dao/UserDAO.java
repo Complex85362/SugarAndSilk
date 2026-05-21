@@ -170,7 +170,7 @@ public boolean checkEmailExists(String email) throws Exception {
 }
 public boolean updateProfile(int userId, String firstName, String lastName,
         String address, String profileImage) throws Exception {
-// Build SQL dynamically — only update profileImage column if a new one was uploaded
+// Build SQL dynamically
 String sql;
 if (profileImage != null) {
 sql = "UPDATE user SET Firstname = ?, Lastname = ?, Address = ?, Profile_Image = ? WHERE User_ID = ?";

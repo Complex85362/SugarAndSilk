@@ -76,10 +76,10 @@ public class ProductManagementServlet extends HttpServlet {
                 }
             }
  
-            // Always redirect (not forward) back to GET to reload the product list
+            // Always redirect back to GET to reload the product list
             response.sendRedirect(request.getContextPath() + "/productManagement");
         } else {
-            // If no _method=DELETE, just reload the page via GET
+            // If no _method=DELETE, reload the page via GET
             doGet(request, response);
         }
 	}

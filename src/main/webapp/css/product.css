@@ -54,7 +54,7 @@ body {
 }
 .product-grid a { text-decoration: none; }
 
-/* Card — position:relative anchors the overlay form */
+/* Card */
 .product-card {
     position: relative;
     text-align: left;
@@ -98,7 +98,7 @@ body {
     opacity: 1;
 }
 
-/* Button — fills the form width */
+/* Button  */
 .add-btn {
     display: block;
     width: 92%;

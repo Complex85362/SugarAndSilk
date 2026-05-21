@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                 // Store user object in session
                 SessionUtil.setAttribute(request, "user", userData, 3600);
                 
-                // FIX: Explicitly bind the session-wide 'userRole' key for front-end access checks
+             
                 String role = userData.getUserRole();
                 request.getSession().setAttribute("userRole", role != null ? role.toLowerCase().trim() : "customer");
                 

@@ -32,11 +32,11 @@ public class CartServlet extends HttpServlet {
             List<CartItemModel> cartItems = cartDAO.getCartByUser(user.getUserId());
             request.setAttribute("cartItems", cartItems);
             
-            // 2. Fetch total header badge sum quantity metric
+            // 2. Fetch total header sum quantity
             int totalItemsCount = cartDAO.getCartItemCount(user.getUserId());
             request.setAttribute("cartCount", totalItemsCount);
             
-            // 3. SERVER-SIDE MATH: Calculate Sub-Totals, Taxes, and grand overall summary amounts
+            // 3 Calculate Sub-Totals, Taxes, and grand overall summary amounts
             double subTotal = 0.0;
             for (CartItemModel item : cartItems) {
                 subTotal += (item.getProductPrice() * item.getQuantity());
@@ -44,7 +44,7 @@ public class CartServlet extends HttpServlet {
             double taxes = subTotal * 0.10; // 10% VAT mapping
             double total = subTotal + taxes;
             
-            // Bind calculated math variables into page scoping elements
+            //calculated math variables into page  elements
             request.setAttribute("subTotal", String.format("%.2f", subTotal));
             request.setAttribute("taxes", String.format("%.2f", taxes));
             request.setAttribute("total", String.format("%.2f", total));
@@ -83,13 +83,12 @@ public class CartServlet extends HttpServlet {
                 cartDAO.addToCart(user.getUserId(), productId, quantity);
             }
 
-            // NEW LOGIC: Calculate the total items count right here
             int totalItemsCount = cartDAO.getCartItemCount(user.getUserId());
             
-            // SAVE IT TO THE SESSION: This makes it available globally to all pages instantly!
+           
             session.setAttribute("cartCount", totalItemsCount);
 
-            // Redirect the user back to the page they came from so they don't lose their place!
+            // Redirect the user back to the page 
             String referer = request.getHeader("Referer");
             if (referer != null && !referer.isEmpty()) {
                 response.sendRedirect(referer);

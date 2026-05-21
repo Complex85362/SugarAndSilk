@@ -11,7 +11,7 @@ public class InventoryService {
 
     public boolean saveFullProduct(AddProductModel model, Part imagePart, String uploadDir) {
         try {
-            // Security Check: Ensure it is an image before processing
+            // Ensure it is an image before processing
             if (imagePart == null || !FileUploadUtil.isImage(imagePart)) {
                 return false; 
             }

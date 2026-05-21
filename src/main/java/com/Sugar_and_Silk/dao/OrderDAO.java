@@ -24,13 +24,13 @@ public class OrderDAO {
 
         try {
             conn = DBconfig.getConnection();
-            conn.setAutoCommit(false); // CRITICAL: Turn off autocommit to run as a single safe transaction
+            conn.setAutoCommit(false); 
 
             // 1. Insert into Payment Table
             psPayment = conn.prepareStatement(insertPaymentSQL, Statement.RETURN_GENERATED_KEYS);
             psPayment.setDouble(1, totalAmount);
             psPayment.setDate(2, new Date(System.currentTimeMillis()));
-            psPayment.setString(3, "COD"); // Cash on Delivery default for local delivery optimization
+            psPayment.setString(3, "COD"); 
             psPayment.setString(4, "Pending");
             psPayment.executeUpdate();
 

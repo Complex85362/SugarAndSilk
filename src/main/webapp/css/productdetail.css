@@ -9,7 +9,7 @@
     --softpink: #FFC8DD;
 }
 
-/* --- Global Styles --- */
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -110,9 +110,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* ==========================================================================
-   GOLD THEMED CART ACTIONS & UNIFIED INLINE FORM
-   ========================================================================== */
 
 .cart-actions {
     margin-top: 20px;
@@ -123,22 +120,22 @@ body {
 .cart-form-inline {
     display: flex;
     align-items: center;
-    gap: 15px; /* Perfect horizontal gaps between elements */
+    gap: 15px; 
 }
 
-/* Styled Quantity Selector Container Frame */
+
 .qty-selector {
     display: flex;
     align-items: center;
     border: 1px solid #e2e2e2;
-    border-radius: 20px; /* Fluid curved bubble frame edges */
+    border-radius: 20px; 
     background-color: #ffffff;
     overflow: hidden;
     height: 42px;
     width: fit-content;
 }
 
-/* Style mapping for the custom text adjustment triggers */
+
 .qty-btn {
     background: none;
     border: none;
@@ -159,7 +156,7 @@ body {
     color: #000;
 }
 
-/* Cleans up and centers inner numeric text fields */
+
 .qty-input {
     width: 40px;
     height: 100%;
@@ -180,12 +177,12 @@ body {
     margin: 0;
 }
 
-/* Styled Add To Cart Button Component matching Checkout Look */
+/* Styled Add To Cart Button */
 .add-to-cart-btn {
-    background-color: #c4a47c; /* Gold / bronze highlight matching checkout palette */
+    background-color: #c4a47c; 
     color: #ffffff;
     border: none;
-    border-radius: 25px; /* Rounded pill profile style */
+    border-radius: 25px; 
     padding: 0 35px;
     height: 42px;
     font-family: 'Poppins', sans-serif;
@@ -208,9 +205,6 @@ body {
     color: var(--black); 
 }
 
-/* ==========================================================================
-   REVIEW SECTION STYLING
-   ========================================================================== */
 
 .review-section {
     margin-top: 40px;
@@ -323,9 +317,6 @@ body {
     margin-bottom: 8px;
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN ADAPTATIONS
-   ========================================================================== */
 
 @media (max-width: 900px) {
     .product-wrapper {

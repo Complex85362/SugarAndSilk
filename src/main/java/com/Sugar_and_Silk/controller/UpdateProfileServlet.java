@@ -61,12 +61,12 @@ public class UpdateProfileServlet extends HttpServlet {
  
         UserModel currentUser = (UserModel) session.getAttribute("user");
  
-        // ── Read form fields ──────────────────────────────────────────────────
+        //  Read form fields 
         String firstName = trim(request.getParameter("firstName"));
-        String lastName  = trim(request.getParameter("lastName"));
-        String address   = trim(request.getParameter("address"));
+        String lastName = trim(request.getParameter("lastName"));
+        String address = trim(request.getParameter("address"));
  
-        // ── Basic validation ──────────────────────────────────────────────────
+        //  Basic validation
         if (firstName.isEmpty() || lastName.isEmpty()) {
             session.setAttribute("profileError", "First name and last name are required.");
             response.sendRedirect(request.getContextPath() + "/profile");
@@ -78,7 +78,7 @@ public class UpdateProfileServlet extends HttpServlet {
         Part imagePart = request.getPart("profileImage");
  
         if (imagePart != null && imagePart.getSize() > 0) {
-            // Validate it's actually an image
+            // Validate an image
             if (!FileUploadUtil.isImage(imagePart)) {
                 session.setAttribute("profileError", "Only image files (JPG, PNG, etc.) are allowed.");
                 response.sendRedirect(request.getContextPath() + "/profile");
@@ -92,7 +92,7 @@ public class UpdateProfileServlet extends HttpServlet {
                     : ".jpg";
             newImageFileName = currentUser.getUsername() + "_" + System.currentTimeMillis() + ext;
  
-            // Save to deployed /images/ folder (FileUploadUtil also copies to src)
+            // Save to deployed /images/ folder
             String uploadDir = getServletContext().getRealPath("/images/");
             FileUploadUtil.saveFile(imagePart, uploadDir, newImageFileName);
         }
@@ -105,7 +105,7 @@ public class UpdateProfileServlet extends HttpServlet {
                     firstName,
                     lastName,
                     address,
-                    newImageFileName   // null = keep existing image
+                    newImageFileName  
             );
  
             if (updated) {
@@ -127,7 +127,7 @@ public class UpdateProfileServlet extends HttpServlet {
             session.setAttribute("profileError", "A server error occurred. Please try again.");
         }
  
-        // PRG: redirect back to profile (GET) so refresh doesn't re-submit
+      
         response.sendRedirect(request.getContextPath() + "/profile");
     }
  

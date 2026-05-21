@@ -75,7 +75,7 @@ main {
     margin-bottom: 12px;
 }
 
-/* Outer container to hold the forms perfectly flat inline */
+/* Outer container */
 .quantity-selector {
     display: flex;
     align-items: center;
@@ -87,7 +87,7 @@ main {
     width: fit-content;
 }
 
-/* Ensure the tiny inner form structures don't break the layout row */
+/* don't break the layout row */
 .quantity-selector form {
     display: inline-flex;
     margin: 0;
@@ -95,7 +95,7 @@ main {
     height: 100%;
 }
 
-/* Luxury styling for both the plus and minus submit buttons */
+/* styling for both the plus and minus submit buttons */
 .quantity-selector button {
     background: var(--pale-gold);
     border: none;
@@ -111,20 +111,20 @@ main {
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* Hover dynamic visual effects */
+
 .quantity-selector button:hover:not(:disabled) {
     background: var(--gold);
     color: #ffffff !important;
 }
 
-/* Elegant look for when the minus button is disabled at quantity = 1 */
+
 .quantity-selector button:disabled {
     background: #fafafa;
     color: #cccccc !important;
     cursor: not-allowed;
 }
 
-/* Centered item counter style rules */
+
 .quantity-selector .qty-display {
     width: 40px;
     text-align: center;

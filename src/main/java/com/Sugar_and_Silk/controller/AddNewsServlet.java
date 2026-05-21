@@ -58,7 +58,7 @@ public class AddNewsServlet extends HttpServlet {
 	            String content = request.getParameter("Content");
 	            Part   filePart = request.getPart("Image_Path");
 	 
-	            // Front end validation similar to add product //
+	            // Front end validation similar 
 	 
 	            if (ValidationUtil.isNullOrEmpty(title)) {
 	                errors.put("title", "News title is required.");
@@ -91,7 +91,7 @@ public class AddNewsServlet extends HttpServlet {
 	                return;
 	            }
 	 
-	            //Save image with same logic as AddProductServlet 
+	            //Save image  
 	 
 	            String uploadDir = getServletContext().getRealPath("/images/");
 	            String fileName  = FileUploadUtil.generateUniqueFileName(

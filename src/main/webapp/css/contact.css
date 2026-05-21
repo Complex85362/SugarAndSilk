@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* --- Variables --- */
+/*  Variables  */
 :root {
     --black: #1F1A17;
     --gold: #C2A46F;
@@ -9,7 +9,7 @@
     --softpink: #FFC8DD;
 }
 
-/* --- Global Styles --- */
+/*  Global Styles*/
 * {
     margin: 0;
     padding: 0;
@@ -45,7 +45,7 @@ body{
     font-size: 40px;
 }
 
-/* --- Contact Form Card --- */
+/*  Contact Form Card  */
 .contact-section {
     padding: 60px 0;
     display: flex;
@@ -70,7 +70,7 @@ body{
     font-weight: 400;
 }
 
-/* --- Form Elements --- */
+/*Form Elements*/
 .form-row {
     display: flex;
     gap: 20px;
@@ -104,7 +104,7 @@ textarea {
     border-color: var(--blue);
 }
 
-/* --- Submit Button --- */
+
 .form-submit {
     display: flex;
     justify-content: center;
